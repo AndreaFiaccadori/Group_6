@@ -1,0 +1,54 @@
+(i metodi set e get degli attributi di ciascuna classe sono impliciti)
+Sedia
+attributi:
+metodi:
+Plank
+	attributi:
+	metodi:
+		-void plankFilling()
+		-void plankPrint
+		-void objectiveTilesPositioning()
+		-void assignChair()
+		-int checkPlayersNumber()
+		-boolean areAllTilesAdjacent()
+		-boolean empySpaces()
+Library
+	attributi:
+	metodi:
+		-void libraryFilling()
+		-boolean isFull()
+Object_tile
+	attributi:
+	metodi:
+		-void takeTile()
+		-boolean adjacent()
+		-boolean straightLine()
+Tile_type(enumerazione)
+	attributi:
+	metodi:
+Score_tile(enumerazione)
+	attributi:
+	metodi:
+Player
+	attributi:
+	metodi:
+Bag
+	attributi:
+	metodi:
+		-void extraction()
+Objective_card(classe astratta)
+	metodi:
+		-void objectiveCardExtraction()
+Objective_common_card()
+	attributi:
+		-void commonObjectiveCardExtraction()
+	metodi:
+Objective_personal_card
+	attributi:
+	metodi:
+		-void personalObjectiveCardExtraction()
+Interface(interfaccia)
+-?????
+Main
+-public static main(String args[])
+
