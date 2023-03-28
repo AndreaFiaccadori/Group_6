@@ -72,4 +72,26 @@ Interface(interfaccia)
 -?????
 Main
 -public static main(String args[])
+	Fasi:
+	-chiedere numero giocatori
+	-chiedi nickname giocatori (random assegna sedia)
+	-creare plancia
+	-creare libreria
+	-pick 2 random common goals (assegna tessere punteggi a seconda del numero giocatori)
+	-pick 1 random personal goals each
+	-riempi plancia
+	INIZIO GIOCO
+	-inizio turno giocatore
+	-scegliere 1/2/3 tessere--> controllo validità tessere scelte --> controllo quanti spazi vuoti contiene la colonna e la libreria
+	-scelta colonna da riempire
+	-scelta ordine delle tessere
+	-riempi libreria --> controllo se colonna è piena 
+	-controllo carte obiettivo (comuni e personali)
+	-if --> plancia vuota --> riempi plancia
+	-controllo libreria riempita
+	-finire giro dei turni
+	FINE GIOCO
+	-calcolo punteggio
+	-decisione vincitore
+	
 
