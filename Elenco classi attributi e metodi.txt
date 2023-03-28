@@ -1,12 +1,13 @@
 (i metodi set e get degli attributi di ciascuna classe sono impliciti)
-Sedia
+Chair(classe astratta)
 attributi:
 metodi:
 Plank
 	attributi:
+		-Object_tile[][] plank
 	metodi:
 		-void plankFilling()
-		-void plankPrint
+		-void plankPrint()
 		-void objectiveTilesPositioning()
 		-void assignChair()
 		-int checkPlayersNumber()
@@ -14,26 +15,38 @@ Plank
 		-boolean empySpaces()
 Library
 	attributi:
+		-Object_tile[][] library
 	metodi:
 		-void libraryFilling()
 		-boolean isFull()
 Object_tile
 	attributi:
+		-String type
+		-String id
+		-String position
 	metodi:
 		-void takeTile()
 		-boolean adjacent()
 		-boolean straightLine()
 Tile_type(enumerazione)
-	attributi:
-	metodi:
+	attributi:(none)
+	metodi:(none)
 Score_tile(enumerazione)
 	attributi:
-	metodi:
+		-int roman_number
+		-int n_point
+		-String owner
+	metodi:(none)
 Player
 	attributi:
-	metodi:
+		-int points
+		-String nickname
+		-String player_order
+		-Chair chair
+	metodi:(none)
 Bag
 	attributi:
+		-Object_tile[] bag
 	metodi:
 		-void extraction()
 Objective_card(classe astratta)
@@ -41,12 +54,20 @@ Objective_card(classe astratta)
 		-void objectiveCardExtraction()
 Objective_common_card()
 	attributi:
-		-void commonObjectiveCardExtraction()
+		-int id
+		-String owner
 	metodi:
+		-void commonObjectiveCardExtraction()
 Objective_personal_card
 	attributi:
+		-int id
+		-String owner
 	metodi:
 		-void personalObjectiveCardExtraction()
+Point_table
+	attributi:???
+	metodi:???
+
 Interface(interfaccia)
 -?????
 Main
