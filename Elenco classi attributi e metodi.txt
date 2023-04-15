@@ -1,4 +1,4 @@
-(i metodi set e get degli attributi di ciascuna classe sono impliciti)
+(il costruttore, i metodi set e get degli attributi di ciascuna classe sono impliciti)
 Chair(classe astratta)
 attributi:
 metodi:
@@ -16,9 +16,20 @@ Plank
 Library
 	attributi:
 		-Object_tile[][] library
+		-final int rows
+		-final int columns
 	metodi:
-		-void libraryFilling()
+		-void libraryFillingChecks()
+		-void libraryFilling(int tiles,int column)
+		-boolean isColumnFull(int tiles,int column)
+		-boolean tooManyTiles(int tiles)
 		-boolean isFull()
+		-int score()
+		-void copyLibrary(Object_tile library[][])
+		-int fromLeftToRight(int row,int column,String type)
+		-int fromRightToLeft(int row,int column,String type)
+		-int topDowm(int row,int column,String type)
+		.int bottomUp(int row,int column,String type)
 Object_tile
 	attributi:
 		-String type
