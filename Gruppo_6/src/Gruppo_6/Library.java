@@ -1,4 +1,4 @@
-package myshelf;
+package Gruppo_6;
 import java.util.Scanner;
 
 public class Library {

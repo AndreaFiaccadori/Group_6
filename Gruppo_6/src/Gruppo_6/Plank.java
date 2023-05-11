@@ -1,3 +1,5 @@
+package Gruppo_6;
+
 public class Plank {
 	private static final int rows = 9;
 	private static final int cols = 9;
@@ -59,7 +61,7 @@ public class Plank {
 			System.out.print(i + " ");
 			for(int j=0; j<cols; j++) {
 				if(plank[i][j] != null) {
-					System.out.print(plank[i][j].type + " ");
+					System.out.print(plank[i][j].getTypeId() + " ");
 				} else {
 					System.out.print("  ");
 				}
