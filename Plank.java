@@ -50,6 +50,28 @@ public class Plank {
 		}
 	}
 	
+	public String toString() {
+		String s = "  ";
+		for(int i=0; i<cols; i++) {
+			s += (i + " ");
+		}
+		s += "\n";
+		
+		for(int i=0; i<rows; i++) {
+			s += (i + " ");
+			for(int j=0; j<cols; j++) {
+				if(plank[i][j] != null) {
+					s += (plank[i][j].getTypeId() + " ");
+				} else {
+					s += ("  ");
+				}
+			}
+			s += ("\n");
+		}
+		return s;
+	}
+	
+	/*
 	public void printPlank() {
 		System.out.print("  ");
 		for(int i=0; i<cols; i++) {
@@ -69,64 +91,23 @@ public class Plank {
 			System.out.println();
 		}
 	}
+	*/
 	
 	public boolean isChoiceValid(int row1, int col1, int row2, int col2, int row3, int col3) {
-	    // Check that all three tiles are in the same row or column
-	    if (row1 != row2 || row1 != row3 || col1 != col2 || col1 != col3) {
-	        return false;
-	    }
 
-	    // Check that all three tiles have at least one neighboring tile that is empty
-	    boolean hasEmptyNeighbor = false;
-	    if (row1 > 0) {
-	        hasEmptyNeighbor |= (plank[row1-1][col1] == null);
-	    }
-	    if (row1 < rows-1) {
-	        hasEmptyNeighbor |= (plank[row1+1][col1] == null);
-	    }
-	    if (col1 > 0) {
-	        hasEmptyNeighbor |= (plank[row1][col1-1] == null);
-	    }
-	    if (col1 < cols-1) {
-	        hasEmptyNeighbor |= (plank[row1][col1+1] == null);
-	    }
-	    if (!hasEmptyNeighbor) {
-	        return false;
-	    }
-
-	    if (row2 > 0) {
-	        hasEmptyNeighbor |= (plank[row2-1][col2] == null);
-	    }
-	    if (row2 < rows-1) {
-	        hasEmptyNeighbor |= (plank[row2+1][col2] == null);
-	    }
-	    if (col2 > 0) {
-	        hasEmptyNeighbor |= (plank[row2][col2-1] == null);
-	    }
-	    if (col2 < cols-1) {
-	        hasEmptyNeighbor |= (plank[row2][col2+1] == null);
-	    }
-	    if (!hasEmptyNeighbor) {
-	        return false;
-	    }
-
-	    if (row3 > 0) {
-	        hasEmptyNeighbor |= (plank[row3-1][col3] == null);
-	    }
-	    if (row3 < rows-1) {
-	        hasEmptyNeighbor |= (plank[row3+1][col3] == null);
-	    }
-	    if (col3 > 0) {
-	        hasEmptyNeighbor |= (plank[row3][col3-1] == null);
-	    }
-	    if (col3 < cols-1) {
-	        hasEmptyNeighbor |= (plank[row3][col3+1] == null);
-	    }
-	    if (!hasEmptyNeighbor) {
-	        return false;
-	    }
-
-	    return true;
+		if(row1<0 || row1>=rows || row2<0 || row2>=rows || row3<0 || row3>=rows || col1<0 || col1>=cols || col2<0 || col2>=cols || col3<0 || col3>=cols) {
+			return false;
+		}
+		if(plank[row1][col1] == null || plank[row2][col2] == null || plank[row3][col3] == null) {
+			return false;
+		}
+		if (row1 == row2 && row2 == row3 && (Math.abs(col1 - col2) == 1 && Math.abs(col2 - col3) == 1)) {
+			return true;
+		}
+		if (col1 == col2 && col2 == col3 && (Math.abs(row1 - row2) == 1 && Math.abs(row2 - row3) == 1)) {
+			return true;
+		}
+		return false;
 	}
 
 }
