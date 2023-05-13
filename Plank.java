@@ -41,6 +41,10 @@ public class Plank {
 	
 	public Plank(int nPlayers) {
 		players = nPlayers;
+		fillPlank();
+	}
+	
+	public void fillPlank() {
 		for(int i=0; i<rows; i++) {
 			for(int j=0; j<cols; j++) {
 				if(TILES_POSITIONS[i][j] <= players) {
