@@ -34,8 +34,8 @@ public class Plank {
 	 *
 	 *
 	 *    +: cella da riempire sempre
-	 *    3: cella da riempire solo con 3 o 4 giocatori
-	 *    4: cella da riempire solo con 4 giocatori
+	 *    3: cella da riempire solo con 2 o 3 giocatori
+	 *    4: cella da riempire con 2, 3 o 4 giocatori
 	 *    
 	*/
 	
@@ -108,6 +108,19 @@ public class Plank {
 			return true;
 		}
 		return false;
+	}
+	
+	public Tile takeTile(int col, int row) {
+		if(row<0 || row>rows || col<0 || col > cols) {
+			throw new IllegalArgumentException("The coordinates are invalid");
+		} else if(plank[col][row]!=null) {
+			throw new IllegalArgumentException("There is no tile at given coordinates");
+		} else {
+			Tile t = plank[row][col];
+			plank[row][col] = null;
+			return t;
+		}
+		
 	}
 
 }
