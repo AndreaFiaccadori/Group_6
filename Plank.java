@@ -47,7 +47,7 @@ public class Plank {
 	public void fillPlank() {
 		for(int i=0; i<rows; i++) {
 			for(int j=0; j<cols; j++) {
-				if(TILES_POSITIONS[i][j] <= players) {
+				if(TILES_POSITIONS[i][j] <= players && plank[i][j] == null) {
 					plank[i][j] = new Tile();
 				}
 			}
@@ -114,17 +114,33 @@ public class Plank {
 		return false;
 	}
 	
-	public Tile takeTile(int col, int row) {
+	public Tile takeTile(int row, int col) {
 		if(row<0 || row>rows || col<0 || col > cols) {
 			throw new IllegalArgumentException("The coordinates are invalid");
-		} else if(plank[col][row]!=null) {
+		} else if(plank[row][col]==null) {
 			throw new IllegalArgumentException("There is no tile at given coordinates");
 		} else {
 			Tile t = plank[row][col];
 			plank[row][col] = null;
 			return t;
 		}
-		
 	}
-
+	
+	public boolean isToFill() {
+		for(int i=0; i<rows; i++) {
+			for(int j=0; j<cols; j++) {
+				if(plank[i][j] == null) {
+					continue;
+				} else {
+					if(j==8 && plank[i+1][j]!=null) {System.out.println("COL8"); return false;}
+					if(i==8 && plank[i][j+1]!=null) {System.out.println("ROW8"); return false;}
+					if(plank[i][j+1]!=null || plank[i+1][j]!=null) {
+						System.out.println("Trovata: " + i + " " + j);
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
 }
