@@ -8,15 +8,15 @@ public class Plank {
 	private Tile plank[][] = new Tile[rows][cols];
 
 	private static final int[][] TILES_POSITIONS = {
-			{9, 9, 9, 3, 4, 9, 9, 9, 9},
-			{9, 9, 9, 2, 2, 4, 9, 9, 9},
-			{9, 9, 3, 2, 2, 2, 3, 9, 9},
-			{9, 4, 2, 2, 2, 2, 2, 2, 3},
-			{4, 2, 2, 2, 2, 2, 2, 2, 4},
-			{3, 2, 2, 2, 2, 2, 2, 4, 9},
-			{9, 9, 3, 2, 2, 2, 3, 9, 9},
-			{9, 9, 9, 4, 2, 2, 9, 9, 9},
-			{9, 9, 9, 9, 4, 3, 9, 9, 9}
+		{9, 9, 9, 3, 4, 9, 9, 9, 9},
+		{9, 9, 9, 2, 2, 4, 9, 9, 9},
+		{9, 9, 3, 2, 2, 2, 3, 9, 9},
+		{9, 4, 2, 2, 2, 2, 2, 2, 3},
+		{4, 2, 2, 2, 2, 2, 2, 2, 4},
+		{3, 2, 2, 2, 2, 2, 2, 4, 9},
+		{9, 9, 3, 2, 2, 2, 3, 9, 9},
+		{9, 9, 9, 4, 2, 2, 9, 9, 9},
+		{9, 9, 9, 9, 4, 3, 9, 9, 9}
 	};
 	/*
 	 *
@@ -67,7 +67,7 @@ public class Plank {
 			s += (i + " ");
 			for(int j=0; j<cols; j++) {
 				if(plank[i][j] != null) {
-					s += (plank[i][j].getTypeId() + " ");
+					s += (plank[i][j].getFirstTypeChar() + " ");
 				} else {
 					s += ("  ");
 				}
@@ -107,22 +107,28 @@ public class Plank {
 		if(plank[row1][col1] == null) {
 			return false;
 		}
-		return false;
+		if(!hasFreeAdjacent(row1, col1)) {
+			return false;
+		}
+		return true;
 	}
 	
 	// Checks if the 2 cells given are a valid choice
 	public boolean isChoiceValid(int row1, int col1, int row2, int col2) {
 		if(row1<0 || row1>=rows || row2<0 || row2>=rows || col1<0 || col1>=cols || col2<0 || col2>=cols) {
-			return false;
+			return false; // Tile is outside the plank
 		}
 		if(plank[row1][col1] == null || plank[row2][col2] == null) {
+			return false; // One tile is empty
+		}
+		if(!hasFreeAdjacent(row1, col1) || !hasFreeAdjacent(row2, col2)) {
 			return false;
 		}
 		if (row1 == row2 && (Math.abs(col1 - col2) == 1)) {
-			return true;
+			return true; // On same row and adjacent
 		}
 		if (col1 == col2 && (Math.abs(row1 - row2) == 1)) {
-			return true;
+			return true; // On same column and adjacent
 		}
 		return false;
 	}
@@ -135,6 +141,9 @@ public class Plank {
 		if(plank[row1][col1] == null || plank[row2][col2] == null || plank[row3][col3] == null) {
 			return false;
 		}
+		if(!hasFreeAdjacent(row1, col1) || !hasFreeAdjacent(row2, col2) || !hasFreeAdjacent(row3, col3)) {
+			return false;
+		}
 		if (row1 == row2 && row2 == row3 && (Math.abs(col1 - col2) == 1 && Math.abs(col2 - col3) == 1)) {
 			return true;
 		}
@@ -143,10 +152,19 @@ public class Plank {
 		}
 		return false;
 	}
+	private boolean hasFreeAdjacent(int row, int col) {
+		if(row-1<0 || col-1<0 || row+1>=rows || col+1>=cols) {
+			return true;
+		}
+		if(plank[row-1][col]==null || plank[row][col+1]==null || plank[row+1][col]==null || plank[row][col-1]==null) {
+			return true;
+		}
+		return false;
+	}
 	
 	// Pick a tile, returns it and sets that tile's position to null on the plank
 	public Tile takeTile(int row, int col) {
-		if(isChoiceValid(row, col)) {
+		if(!isChoiceValid(row, col)) {
 			throw new IllegalArgumentException("The chosen tile is not valid");
 		} else {
 			Tile t = plank[row][col];
@@ -154,6 +172,16 @@ public class Plank {
 			return t;
 		}
 	}
+	
+	/*
+	public Tile getTile(int row, int col) {
+		if(isChoiceValid(row, col)) {
+			return plank[row][col];
+		} else {
+			return null;
+		}
+	}
+	*/
 	
 	// Returns true if the plank needs to be refilled, returns false otherwise
 	public boolean isToFill() {
@@ -165,7 +193,6 @@ public class Plank {
 					if(j==8 && plank[i+1][j]!=null) {System.out.println("COL8"); return false;}
 					if(i==8 && plank[i][j+1]!=null) {System.out.println("ROW8"); return false;}
 					if(plank[i][j+1]!=null || plank[i+1][j]!=null) {
-						System.out.println("Trovata: " + i + " " + j);
 						return false;
 					}
 				}
