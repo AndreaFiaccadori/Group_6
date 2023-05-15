@@ -123,6 +123,7 @@ public class Game {
 					for(int i=0; i<pickedTiles.size(); i++) {
 						System.out.print("  " + (i+1) + ": " + pickedTiles.get(i).getFirstTypeChar());
 					}
+					System.out.println();
 					System.out.println("Which one of these tiles do you want to put in first (1 or 2)? ");
 					tileChoice = s.nextInt();
 					while(tileChoice<1 || tileChoice>2) {
