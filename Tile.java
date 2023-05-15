@@ -21,4 +21,8 @@ public class Tile {
 	public String getColor() {
 		return colors[type];
 	}
+
+	public char getFirstTypeChar() {
+		return types[type].charAt(0);
+	}
 }
