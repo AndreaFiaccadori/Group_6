@@ -33,17 +33,18 @@ public class Plank {
 	 *    8               4  3
 	 *
 	 *
-	 *    +: cella da riempire sempre
-	 *    3: cella da riempire solo con 2 o 3 giocatori
-	 *    4: cella da riempire con 2, 3 o 4 giocatori
+	 *    +: always fill
+	 *    3: only fill with 3 or 4 players
+	 *    4: only fill with 4 players
 	 *    
 	*/
 	
 	public Plank(int nPlayers) {
 		players = nPlayers;
-		fillPlank();
+		fillPlank(); // Fills the plank, according to the number of players
 	}
 	
+	// Randomly fills empty cells on the plank, according to the number of players
 	public void fillPlank() {
 		for(int i=0; i<rows; i++) {
 			for(int j=0; j<cols; j++) {
@@ -54,13 +55,14 @@ public class Plank {
 		}
 	}
 	
+	// Returns a string with the plank
+	// Print the returned string to print the plank
 	public String toString() {
 		String s = "  ";
 		for(int i=0; i<cols; i++) {
 			s += (i + " ");
 		}
 		s += "\n";
-		
 		for(int i=0; i<rows; i++) {
 			s += (i + " ");
 			for(int j=0; j<cols; j++) {
@@ -97,8 +99,36 @@ public class Plank {
 	}
 	*/
 	
+	// Checks if the cell given is a valid choice
+	public boolean isChoiceValid(int row1, int col1) {
+		if(row1<0 || row1>=rows || col1<0 || col1>=cols) {
+			return false;
+		}
+		if(plank[row1][col1] == null) {
+			return false;
+		}
+		return false;
+	}
+	
+	// Checks if the 2 cells given are a valid choice
+	public boolean isChoiceValid(int row1, int col1, int row2, int col2) {
+		if(row1<0 || row1>=rows || row2<0 || row2>=rows || col1<0 || col1>=cols || col2<0 || col2>=cols) {
+			return false;
+		}
+		if(plank[row1][col1] == null || plank[row2][col2] == null) {
+			return false;
+		}
+		if (row1 == row2 && (Math.abs(col1 - col2) == 1)) {
+			return true;
+		}
+		if (col1 == col2 && (Math.abs(row1 - row2) == 1)) {
+			return true;
+		}
+		return false;
+	}
+	
+	// Checks if the 3 cells given are a valid choice
 	public boolean isChoiceValid(int row1, int col1, int row2, int col2, int row3, int col3) {
-
 		if(row1<0 || row1>=rows || row2<0 || row2>=rows || row3<0 || row3>=rows || col1<0 || col1>=cols || col2<0 || col2>=cols || col3<0 || col3>=cols) {
 			return false;
 		}
@@ -114,11 +144,10 @@ public class Plank {
 		return false;
 	}
 	
+	// Pick a tile, returns it and sets that tile's position to null on the plank
 	public Tile takeTile(int row, int col) {
-		if(row<0 || row>rows || col<0 || col > cols) {
-			throw new IllegalArgumentException("The coordinates are invalid");
-		} else if(plank[row][col]==null) {
-			throw new IllegalArgumentException("There is no tile at given coordinates");
+		if(isChoiceValid(row, col)) {
+			throw new IllegalArgumentException("The chosen tile is not valid");
 		} else {
 			Tile t = plank[row][col];
 			plank[row][col] = null;
@@ -126,6 +155,7 @@ public class Plank {
 		}
 	}
 	
+	// Returns true if the plank needs to be refilled, returns false otherwise
 	public boolean isToFill() {
 		for(int i=0; i<rows; i++) {
 			for(int j=0; j<cols; j++) {
