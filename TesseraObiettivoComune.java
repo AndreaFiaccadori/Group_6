@@ -3,7 +3,7 @@ package Gruppo_6;
 import java.util.Random;
 
 public class TesseraObiettivoComune {
-	
+		
 	
 	public int draw_card() {	//pesca obiettivo comune 1
 		Random rand = new Random(); 	      
@@ -167,6 +167,48 @@ public class TesseraObiettivoComune {
 		}
 		
 	return check;
+		
+	}
+	
+	/*
+	 * quando si chiama il metodo seguente dovremo dare alla variabile contatore un valore che
+	 * aumenta ogni volta che un obiettivo viene completato
+	 */
+	public int assegnaPunteggio(int nPlayers, int contatore) { 
+		
+		if(nPlayers==2) {
+			if(contatore==0) {
+				return 8;
+			}else {
+				return 4;
+			}
+		}
+		
+		if(nPlayers==3) {
+			if(contatore==0) {
+				return 8;
+			}
+			if(contatore==1) {
+				return 6;
+			}else {
+				return 4;
+			}
+		}
+		
+		if(nPlayers==4) {
+			if(contatore==0) {
+				return 8;
+			}
+			if(contatore==1) {
+				return 6;
+			}
+			if(contatore==2) {
+				return 4;
+			}else {
+				return 2;
+			}
+		}
+		return 0;
 		
 	}
 
