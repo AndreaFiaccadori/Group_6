@@ -1,4 +1,4 @@
-package main;
+package gioco;
 
 public class Card extends PersonalObjective {
 	
