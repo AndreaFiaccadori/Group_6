@@ -231,6 +231,42 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 6:
+			//controllo1 sx
+			if(libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[1][1].getType() 
+			&& libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[2][2].getType() 
+			&& libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[3][3].getType() 
+			&& libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[4][4].getType()) {
+				check=true;
+			}else {
+				check=false;
+			}
+			//controllo2 sx
+			if(libreriaGiocatore.library[1][0].getType()==libreriaGiocatore.library[2][1].getType() 
+			&& libreriaGiocatore.library[1][0].getType()==libreriaGiocatore.library[3][2].getType() 
+			&& libreriaGiocatore.library[1][0].getType()==libreriaGiocatore.library[4][3].getType() 
+			&& libreriaGiocatore.library[1][0].getType()==libreriaGiocatore.library[5][4].getType()) {
+				check=true;
+			}else {
+				check=false;
+			}
+			//controllo1 dx
+			if(libreriaGiocatore.library[0][4].getType()==libreriaGiocatore.library[1][3].getType() 
+			&& libreriaGiocatore.library[0][4].getType()==libreriaGiocatore.library[2][2].getType() 
+			&& libreriaGiocatore.library[0][4].getType()==libreriaGiocatore.library[3][1].getType() 
+			&& libreriaGiocatore.library[0][4].getType()==libreriaGiocatore.library[4][0].getType()) {
+				check=true;
+			}else {
+				check=false;
+			}
+			//controllo2 dx
+			if(libreriaGiocatore.library[1][4].getType()==libreriaGiocatore.library[2][3].getType() 
+			&& libreriaGiocatore.library[1][4].getType()==libreriaGiocatore.library[3][2].getType() 
+			&& libreriaGiocatore.library[1][4].getType()==libreriaGiocatore.library[4][1].getType() 
+			&& libreriaGiocatore.library[1][4].getType()==libreriaGiocatore.library[5][0].getType()) {
+				check=true;
+			}else {
+				check=false;
+			}			
 			break;
 				
 		case 7:
