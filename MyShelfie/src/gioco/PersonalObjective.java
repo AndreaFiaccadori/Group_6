@@ -3,12 +3,8 @@ package gioco;
 import java.util.Random;
 
 public class PersonalObjective {
-	
-		//colori: blue, green, pink, yellow, white, cyan.
-		
 		
 		//ESTRAZIONE CARTA
-		
 		public int [] drawCard (int numPlayer) {
 			int [] extractions=new int [numPlayer];
 			
@@ -32,19 +28,18 @@ public class PersonalObjective {
 		
 		
 		//CONTATORE PUNTEGGIO
-		//manca
 		public int PlayerScore (Library personalLibrary, Card personalCard) {
 			int score=0;
 			String cardColor=new String();
 			String libraryColor=new String();
 			for (int contRow=0; contRow<6;contRow++) {
 				for(int contColumn=0; contColumn<5; contColumn++) {
-					str=personalCard.getColor(contRow, contColumn); //ok
-					str1=String.valueOf(strControllo[contRow][contColumn]);
-					if (str.equals("null")) {
+					cardColor=personalCard.getColor(contRow, contColumn);
+					if (cardColor.equals("null")) {
 						continue;
 					}
 					else {
+						libraryColor=String.valueOf(personalLibrary[contRow][contColumn].getColor);
 						if (str.equals(str1)) {
 							score++;
 						}
@@ -52,9 +47,7 @@ public class PersonalObjective {
 					}
 				}
 			}//fine controllo libreria e carta obbiettivo personale
-			//String.valueOf(nomeLibreria[][].getColor)
-			
-			
+	
 			//attribuzione punti
 			switch(score) {
 				case 0:
