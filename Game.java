@@ -8,7 +8,7 @@ public class Game {
 	 * TODO
 	 * Let player undo the decision to pick another tile
 	*/
-	public static final String typesLine = "(c)at, (b)ook, (g)ame, (f)rame, (t)rophy, (p)lant";
+	public static final String typesLine = "Legend: \033[0;32mcat\033[0m, \033[0;37mbook\033[0m, \033[0;33mgame\033[0m, \033[0;34mframe\033[0m, \033[0;36mtrophy\033[0m, \033[0;95mplant\033[0m";
 	private Plank p;
 	private final int players;
 	private Library[] libraries;
