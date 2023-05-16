@@ -26,7 +26,7 @@ public class Library {
 	 */
 	public void libraryFillingChecks() {
 		int column,nTiles;
-		boolean tooMany,full;//I use this two variables to don't call the methods two times
+		boolean tooMany,full;//I use this two variables so i don't have to call the method two times
 		//checking the input of the tiles the player wants to put in his library 
 		do {
 			tooMany=false;
@@ -56,7 +56,7 @@ public class Library {
 		}while(column<1||column>5||full==true);
 	}
 	/**
-	 *This method count if there are as empty spaces as the tiles the player choose to put 
+	 *This method counts if there are as empty spaces as the tiles the player choose to put 
 	 */
 	public boolean isColumnFull(int tiles,int column) {
 		for(int cont=0;cont<tiles;cont++) {
@@ -86,7 +86,7 @@ public class Library {
 		return true;
 	}
 	/**
-	 *Puts a tile in the column that the player chose
+	 *Puts a tile in the column that he chose
 	 */
 	public void libraryFilling(Tile t,int column) {
 		for(int cont=this.rows-1;cont<0;cont--) {
@@ -109,6 +109,11 @@ public class Library {
 		}
 		return true;
 	}
+	/**
+	 * The main method for the score system that add points based on how many tiles of the same type are adjacent.
+	 * Every time i find a tile, the method crossChecks triggers and then i add the points to the score based on the return
+	 * @return
+	 */
 	public int score() {
 		int score=0;
 		int sum=0;//it's used to understand from how many points I have to increase the variable score
@@ -119,7 +124,7 @@ public class Library {
 			for(int col=0;col<this.columns;col++) {
 				if(this.library[row][col]!=null) {
 					tile_type=this.library[row][col].getType();
-					this.method(row,col,tile_type);
+					this.crossCheck(row,col,tile_type);
 					if(sum==3) {
 						score+=2;
 					}
@@ -140,6 +145,10 @@ public class Library {
 		}
 		return score;
 	}
+	/**
+	 * This method is used to copy the current library of the player so that i can modify later the library without changing the original one
+	 * @param library
+	 */
 	public void copyLibrary(Tile library[][]) {
 		for(int row=0;row<this.rows;row++) {
 			for(int col=0;col<this.columns;col++) {
@@ -148,8 +157,18 @@ public class Library {
 		}
 
 	}
-	//scrivo dopo
-	public int method(int row,int col,String type) {
+	/**
+	 * I check every adjacent tile of the one passed by the method score, 
+	 * if any of them has the same type of the first one i add the row and the column in an array(adjacentTiles)
+	 * I start from one tile and i check the upper one,the lower one, the one on the left an the one on the right.
+	 * After that I add the one that i used for the checks in another array(checkedTiles)
+	 * The method stop his execution when the two arrays have the same number of elements(there aren't any adjacent tiles that i haven't checked)
+	 * @param row
+	 * @param col
+	 * @param type
+	 * @return
+	 */
+	public int crossCheck(int row,int col,String type) {
 		int sum=1;
 		int adjacentTiles[]=new int[60];
 		int checkedTiles[]=new int[60];
@@ -197,6 +216,13 @@ public class Library {
 		}
 		return sum;
 	}
+	/**
+	 * I used this method so there aren't duplicates in the 2 array of the method crossCheck
+	 * @param array
+	 * @param n1
+	 * @param n2
+	 * @return
+	 */
 	public boolean contains(int array[],int n1,int n2) {
 		for(int cont=0;cont<60;cont+=2) {
 			if(array[cont]==n1&&array[cont+1]==n2) {
@@ -205,6 +231,15 @@ public class Library {
 		}
 		return false;
 	}
+	/**
+	 * This method allows to memorize the row and the column of the tiles in in the 2 array of the method crossCheck based on a 2 digit number.
+	 * The first one is for the row and the second one is for the column.
+	 * (It only generates the two digit number)
+	 * of a number
+	 * @param a1
+	 * @param a2
+	 * @return
+	 */
 	public int whichTile(int a1[],int a2[]) {
 		for(int cont=0;cont<60;cont+=2) {
 			if(a1[cont]!=a2[cont]||a1[cont+1]!=a2[cont+1]) {
