@@ -1,4 +1,4 @@
-package main;
+package gioco;
 
 import java.util.Random;
 
@@ -33,13 +33,13 @@ public class PersonalObjective {
 		
 		//CONTATORE PUNTEGGIO
 		//manca
-		public int PlayerScore (String [][] strControllo, Card personalCard) {
+		public int PlayerScore (Library personalLibrary, Card personalCard) {
 			int score=0;
-			String str=new String();
-			String str1=new String();
+			String cardColor=new String();
+			String libraryColor=new String();
 			for (int contRow=0; contRow<6;contRow++) {
 				for(int contColumn=0; contColumn<5; contColumn++) {
-					str=personalCard.getColor(contRow, contColumn);
+					str=personalCard.getColor(contRow, contColumn); //ok
 					str1=String.valueOf(strControllo[contRow][contColumn]);
 					if (str.equals("null")) {
 						continue;
