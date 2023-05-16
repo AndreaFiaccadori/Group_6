@@ -118,7 +118,7 @@ public class TesseraObiettivoComune {
 		}while(i != 2);
 	}
 	
-	public boolean checkCommonGoals(int a, Library libreriaGiocatore[][]) {
+	public boolean checkCommonGoals(int a, Library libreriaGiocatore) {
 		boolean check=false;
 		int row=0;
 		int col=0;
@@ -132,7 +132,7 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 2:
-			if(libreriaGiocatore[0][0]==libreriaGiocatore[0][4] && libreriaGiocatore[0][0]==libreriaGiocatore[5][0] && libreriaGiocatore[0][0]==libreriaGiocatore[5][4]) {
+			if(libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[0][4].getType() && libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[5][0].getType() && libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[5][4].getType()) {
 				check=true;
 			}else {
 				check=false;
@@ -251,7 +251,7 @@ public class TesseraObiettivoComune {
 			//controllo 1 sx
 			for(row=0; row<5; row++) {
 				for(col=0; col<c; col++) {
-					if(libreriaGiocatore[row][col]==null) {
+					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
@@ -262,7 +262,7 @@ public class TesseraObiettivoComune {
 			c=4;
 			for(row=1; row<5; row++) {
 				for(col=0; col<c; col++) {
-					if(libreriaGiocatore[row][col]==null) {
+					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
@@ -273,7 +273,7 @@ public class TesseraObiettivoComune {
 			c=0;
 			for(row=0; row<5; row++) {
 				for(col=4; col>c; col--) {
-					if(libreriaGiocatore[row][col]==null) {
+					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
@@ -284,7 +284,7 @@ public class TesseraObiettivoComune {
 			c=0;
 			for(row=1; row<5; row++) {
 				for(col=4; col>c; col--) {
-					if(libreriaGiocatore[row][col]==null) {
+					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
