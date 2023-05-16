@@ -120,6 +120,8 @@ public class TesseraObiettivoComune {
 	
 	public boolean checkCommonGoals(int a, Library libreriaGiocatore[][]) {
 		boolean check=false;
+		int row=0;
+		int col=0;
 		
 		switch(a){
 		case 0:
@@ -144,7 +146,88 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 5:
+			int contatore=0;
+			String tileType;		
+			Tile libraryCopy[][]=new Tile[row][col];
+			tileType=libraryCopy[row][col].getType();
+			if(tileType.contentEquals("cat")) {
+				for(row=0; row<5; row++) { 
+					for(col=0; col<4; col++) {
+						contatore++;
+					}
+				}
+			}
+			if(contatore>=8) {
+				check=true;
+			}else {
+				check=false;
+			}
 			
+			if(tileType.contentEquals("book")) {
+				for(row=0; row<5; row++) { 
+					for(col=0; col<4; col++) {
+						contatore++;
+					}
+				}
+			}
+			if(contatore>=8) {
+				check=true;
+			}else {
+				check=false;
+			}
+			
+			if(tileType.contentEquals("game")) {
+				for(row=0; row<5; row++) { 
+					for(col=0; col<4; col++) {
+						contatore++;
+					}
+				}
+			}
+			if(contatore>=8) {
+				check=true;
+			}else {
+				check=false;
+			}
+			
+			if(tileType.contentEquals("frame")) {
+				for(row=0; row<5; row++) { 
+					for(col=0; col<4; col++) {
+						contatore++;
+					}
+				}
+			}
+			if(contatore>=8) {
+				check=true;
+			}else {
+				check=false;
+			}
+		
+			if(tileType.contentEquals("trophy")) {
+				for(row=0; row<5; row++) { 
+					for(col=0; col<4; col++) {
+						contatore++;
+					}
+				}
+			}
+			if(contatore>=8) {
+				check=true;
+			}else {
+				check=false;
+			}
+			
+			if(tileType.contentEquals("plant")) {
+				for(row=0; row<5; row++) { 
+					for(col=0; col<4; col++) {
+						contatore++;
+					}
+				}
+			}
+			if(contatore>=8) {
+				check=true;
+			}else {
+				check=false;
+			}
+						
 			break;
 			
 		case 6:
@@ -163,6 +246,50 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 11:
+			int c=4;
+			check=true;
+			//controllo 1 sx
+			for(row=0; row<5; row++) {
+				for(col=0; col<c; col++) {
+					if(libreriaGiocatore[row][col]==null) {
+						check=false;
+					}
+				}
+				c--;		
+			}
+			
+			//controllo 2 sx
+			c=4;
+			for(row=1; row<5; row++) {
+				for(col=0; col<c; col++) {
+					if(libreriaGiocatore[row][col]==null) {
+						check=false;
+					}
+				}
+				c--;		
+			}
+			
+			//controllo 1 dx
+			c=0;
+			for(row=0; row<5; row++) {
+				for(col=4; col>c; col--) {
+					if(libreriaGiocatore[row][col]==null) {
+						check=false;
+					}
+				}
+				c++;		
+			}
+			
+			//controllo 2 dx
+			c=0;
+			for(row=1; row<5; row++) {
+				for(col=4; col>c; col--) {
+					if(libreriaGiocatore[row][col]==null) {
+						check=false;
+					}
+				}
+				c++;		
+			}
 			break;
 		}
 		
