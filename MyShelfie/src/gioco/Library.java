@@ -32,8 +32,9 @@ public class Library {
 			tooMany=false;
 			System.out.println("How many tiles do you want to put in your library?(from 1 to 3)");
 			nTiles=in.nextInt();
-			if(nTiles>3||nTiles<1) 
+			if(nTiles>3||nTiles<1) {
 				System.out.println("You have chosen an invalid value!!");
+			}
 			if(tooManyTiles(nTiles)==true) {
 				System.out.println("You can't put that many tiles anywhere in your library");
 				tooMany=true;
@@ -45,8 +46,9 @@ public class Library {
 			full=false;
 			System.out.println("In which column do you want to put your tiles?(from 1 to 6)");
 			column=in.nextInt();
-			if(column<1||column>5) 
+			if(column<1||column>5) {
 				System.out.println("You have chosen a not existing column!!");
+			}
 			else if(isColumnFull(nTiles,--column)==true) {
 				System.out.println("The column you have chosen is already full or cannot contain that many tiles");
 				full=true;
@@ -57,9 +59,11 @@ public class Library {
 	 *This method count if there are as empty spaces as the tiles the player choose to put 
 	 */
 	public boolean isColumnFull(int tiles,int column) {
-		for(int cont=0;cont<tiles;cont++)
-			if(this.library[cont][column]!=null)
+		for(int cont=0;cont<tiles;cont++) {
+			if(this.library[cont][column]!=null) {
 				return true;
+			}
+		}
 		return false;
 	}
 	/**
@@ -69,11 +73,14 @@ public class Library {
 		int nullCounter=0;
 		for(int row=0;row<this.rows;row++) {
 			for(int col=0;col<this.columns;col++) {
-				if(this.library[row][col]==null)
+				if(this.library[row][col]==null) {
 					nullCounter++;
+				}
 			}
-			if(nullCounter>tiles)
+			if(nullCounter>tiles) {
 				return false;
+			}
+				
 			nullCounter=0;
 		}
 		return true;
@@ -83,20 +90,23 @@ public class Library {
 	 */
 	public void libraryFilling(int tiles,int column) {
 		int tilesPut=0;//it counts how many tiles are already been put
-		for(int cont=this.rows-1;tilesPut<tiles;cont--)
+		for(int cont=this.rows-1;tilesPut<tiles;cont--) {
 			if(this.library[cont][column]==null) {
 				//this.Object_tile.[...]==[...]
 				tilesPut++;
 			}
+		}
 	}
 	/**
 	 * This method checks if the library is full after the player put the last tiles
 	 */
 	public boolean isFull() {
 		for(int row=0;row<this.rows;row++) {
-			for(int col=0;col<this.columns;col++)
-				if(this.library[row][col]==null)
+			for(int col=0;col<this.columns;col++) {
+				if(this.library[row][col]==null) {
 					return false;
+				}
+			}		
 		}
 		return true;
 	}
@@ -111,14 +121,18 @@ public class Library {
 				if(this.library[row][col]!=null) {
 					tile_type=this.library[row][col].getType();
 					this.method(row,col,tile_type);
-					if(sum==3)
+					if(sum==3) {
 						score+=2;
-					if(sum==3)
+					}
+					if(sum==3) {
 						score+=3;
-					if(sum==3)
+					}
+					if(sum==3) {
 						score+=5;
-					if(sum>=6)
+					}
+					if(sum>=6) {
 						score+=8;
+					}
 					this.library[row][col]=null;
 					row=0;
 					col=0;
@@ -128,9 +142,11 @@ public class Library {
 		return score;
 	}
 	public void copyLibrary(Tile library[][]) {
-		for(int row=0;row<this.rows;row++) 
-			for(int col=0;col<this.columns;col++) 
+		for(int row=0;row<this.rows;row++) {
+			for(int col=0;col<this.columns;col++) {
 				library[row][col]=this.library[row][col];
+			}
+		}
 
 	}
 	//scrivo dopo
@@ -145,19 +161,20 @@ public class Library {
 			checkedTiles[nChecked*2]=row;
 			checkedTiles[nChecked*2+1]=col;
 			nChecked++;
-			if(this.library[row-1][col].getType()==type) 
+			if(this.library[row-1][col].getType()==type) { 
 				if(contains(adjacentTiles,row-1,col)==false) {
 					sum++;
 					adjacentTiles[nAdjacent*2]=row;
 					adjacentTiles[nAdjacent*2+1]=col;
 				}
-			if(this.library[row+1][col].getType()==type) 
+			}
+			if(this.library[row+1][col].getType()==type) {
 				if(contains(adjacentTiles,row+1,col)==false) {
 					sum++;
 					adjacentTiles[nAdjacent*2]=row;
 					adjacentTiles[nAdjacent*2+1]=col;
 				}
-
+			}
 			if(this.library[row][col-1].getType()==type) 
 				if(contains(adjacentTiles,row,col-1)==false) {
 					sum++;
@@ -165,30 +182,36 @@ public class Library {
 					adjacentTiles[nAdjacent*2+1]=col;
 				}
 
-			if(this.library[row][col+1].getType()==type) 
+			if(this.library[row][col+1].getType()==type) {
 				if(contains(adjacentTiles,row,col+1)==false) {
 					sum++;
 					adjacentTiles[nAdjacent*2]=row;
 					adjacentTiles[nAdjacent*2+1]=col;
 				}
+			}
 			int val=whichTile(adjacentTiles,checkedTiles);
 			row=val/10;
 			col=val-row;
 		}
-		for(int cont=0;cont<nAdjacent;cont+=2)
+		for(int cont=0;cont<nAdjacent;cont+=2) {
 			this.library[cont][cont+1]=null;
+		}
 		return sum;
 	}
 	public boolean contains(int array[],int n1,int n2) {
-		for(int cont=0;cont<60;cont+=2)
-			if(array[cont]==n1&&array[cont+1]==n2)
+		for(int cont=0;cont<60;cont+=2) {
+			if(array[cont]==n1&&array[cont+1]==n2) {
 				return true;
+			}
+		}
 		return false;
 	}
 	public int whichTile(int a1[],int a2[]) {
-		for(int cont=0;cont<60;cont+=2) 
-			if(a1[cont]!=a2[cont]||a1[cont+1]!=a2[cont+1])
+		for(int cont=0;cont<60;cont+=2) {
+			if(a1[cont]!=a2[cont]||a1[cont+1]!=a2[cont+1]) {
 				return cont*10+(cont+1);
+			}
+		}
 		return 0;
 	}
 }
