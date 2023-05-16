@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author giaco
- *
- */
-module MyShelfie {
-}
