@@ -86,14 +86,13 @@ public class Library {
 		return true;
 	}
 	/**
-	 *The column that the player has chosen is being filled bottom up
+	 *Puts a tile in the column that the player chose
 	 */
-	public void libraryFilling(int tiles,int column) {
-		int tilesPut=0;//it counts how many tiles are already been put
-		for(int cont=this.rows-1;tilesPut<tiles;cont--) {
+	public void libraryFilling(Tile t,int column) {
+		for(int cont=this.rows-1;cont<0;cont--) {
 			if(this.library[cont][column]==null) {
-				//this.Object_tile.[...]==[...]
-				tilesPut++;
+				this.library[cont][column]=t;
+				return;
 			}
 		}
 	}
