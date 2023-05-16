@@ -39,8 +39,8 @@ public class PersonalObjective {
 						continue;
 					}
 					else {
-						libraryColor=String.valueOf(personalLibrary[contRow][contColumn].getColor);
-						if (str.equals(str1)) {
+						libraryColor=String.valueOf(personalLibrary.library[contRow][contColumn].getColor());
+						if (cardColor.equals(libraryColor)) {
 							score++;
 						}
 						continue;
