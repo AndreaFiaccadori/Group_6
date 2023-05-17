@@ -110,6 +110,17 @@ public class Library {
 		return true;
 	}
 	/**
+	 * This method is used to print the library and all its tiles
+	 */
+	public void printLibrary() {
+		for(int row=0;row<this.rows;row++) {
+			for(int col=0;col<this.columns;col++) {
+				System.out.print("["+this.library[row][col].getFirstTypeChar()+"]");
+			}
+			System.out.println();
+		}
+	}
+	/**
 	 * The main method for the score system that add points based on how many tiles of the same type are adjacent.
 	 * Every time i find a tile, the method crossChecks triggers and then i add the points to the score based on the return
 	 * @return
