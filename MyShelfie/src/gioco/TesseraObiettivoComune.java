@@ -275,7 +275,20 @@ public class TesseraObiettivoComune {
 		case 8:
 			break;
 			
-		case 9:
+		case 9:	
+			int counter=0;
+			for (Tile[] rowContr : libreriaGiocatore) {
+				Set <String> row = new HashSet<>();	
+				for (Tile tileContr : rowContr) {	
+					row.add(String.valueOf(tileContr));
+				}
+				if (row.size()==5) {
+					counter++;}
+			}
+			if (counter>=2) {
+				return true;}
+			if (counter<2) {
+				return false;}
 			break;
 			
 		case 10:
