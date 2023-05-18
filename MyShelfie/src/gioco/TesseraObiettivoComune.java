@@ -270,6 +270,20 @@ public class TesseraObiettivoComune {
 			break;
 				
 		case 7:
+			int counter=0;
+			for (Tile[] rowContr : libreriaGiocatore) {
+				Set <String> row = new HashSet<>();	
+				for (Tile tileContr : rowContr) {	
+					row.add(String.valueOf(tileContr.getColor()));
+				}
+				if (row.size()<=3) {
+					counter++;
+				}
+			}
+			if (counter>=4) {
+				return true;}
+			if (counter<4) {
+				return false;}
 			break;
 			
 		case 8:
@@ -293,7 +307,7 @@ public class TesseraObiettivoComune {
 			for (Tile[] rowContr : libreriaGiocatore) {
 				Set <String> row = new HashSet<>();	
 				for (Tile tileContr : rowContr) {	
-					row.add(tileContr.getColor());
+					row.add(String.valueOf(tileContr.getColor()));
 				}
 				if (row.size()==5) {
 					counter++;}
