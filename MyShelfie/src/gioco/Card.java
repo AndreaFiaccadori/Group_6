@@ -6,6 +6,9 @@ public class Card extends PersonalObjective {
 	final int column=5;
 	String [][] cardGeneral= new String [row][column];
 	
+	/**
+	 * @param numCard numero della carta che si vuole creare
+	 */
 	public Card (int numCard) {
 		String [][] card=this.cardGeneral;
 		switch (numCard) {
@@ -117,17 +120,21 @@ public class Card extends PersonalObjective {
 				card [4][3]="cyan";
 				card [5][4]="blue";
 				break;
-			
 		}//fine case
 			
 	}// fine costruttore Card
 	
+	/**
+	 * @param row numero di riga
+	 * @param column numero di colonna
+	 * @return ritorna il colore di una cella all'interno della carta obbiettivo personale
+	 */
 	public String getColor(int row, int column) {
 		return String.valueOf(this.cardGeneral[row][column]);
 	}
 	
 	
-	//STAMPARE CARTA
+	//STAMPARE OBIETTIVO PERSONALE
 	public void printCard () {
 		for (int contRow=0; contRow<6;contRow++) {
 			for(int contColumn=0; contColumn<5; contColumn++) {
