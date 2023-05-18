@@ -273,6 +273,19 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 8:
+			int counter=0;
+			for (int countColumn=0; countColumn<5; countColumn++) {
+				Set <String> row = new HashSet<>();	
+				for (int countRow=0; countRow<6; countRow++) {		
+					row.add(String.valueOf(libreriaGiocatore.library[countRow][countColumn].getColor()));	
+				}
+				if (row.size()==6) {
+					counter++;}
+			}
+			if (counter>=2) {
+				return true;}
+			if (counter<2) {
+				return false;}
 			break;
 			
 		case 9:	
