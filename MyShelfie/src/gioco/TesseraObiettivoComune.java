@@ -126,6 +126,7 @@ public class TesseraObiettivoComune {
 		int col=0;
 		int contatore=0;		
 		Tile libraryCopy[][]=new Tile[row][col];
+		String tileType;
 		switch(a){
 		case 0:
 			
@@ -188,10 +189,62 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 4:
+			int escludi=0;
+			contatore=0;
+			int[] c=new int[5];
+
+			for(col=0; col<4; col++) {
+				escludi=0;
+				for(row=0; row<5; row++) {
+					if(libreriaGiocatore.library[row][col].getType() != null) {
+						
+						tileType=libraryCopy[row][col].getType();
+						
+						if(tileType.contentEquals("cat")) {
+							c[0]++;
+						}
+						
+						if(tileType.contentEquals("book")) {
+							c[1]++;
+						}
+						
+						if(tileType.contentEquals("game")) {
+							c[2]++;
+						}
+						
+						if(tileType.contentEquals("frame")) {
+							c[3]++;
+						}
+						
+						if(tileType.contentEquals("trophy")) {
+							c[4]++;
+						}
+						
+						if(tileType.contentEquals("plant")) {
+							c[5]++;
+						}
+						
+					}else {
+						escludi=1;
+					}
+				}
+				if(escludi!=1) {
+					if(c[0]<=3 && c[1]<=3 && c[2]<=3 && c[3]<=3 && c[4]<=3 && c[5]<=3) {
+						contatore++;
+					}
+				}
+			}
+			
+			if(contatore>=3) {
+				check=true;
+			}else {
+				check=false;
+			}
+
 			break;
 			
 		case 5:
-			String tileType;
+			
 			tileType=libraryCopy[row][col].getType();
 			if(tileType.contentEquals("cat")) {
 				for(row=0; row<5; row++) { 
@@ -402,49 +455,49 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 11:
-			int c=4;
+			int c1=4;
 			check=true;
 			//controllo 1 sx
 			for(row=0; row<5; row++) {
-				for(col=0; col<c; col++) {
+				for(col=0; col<c1; col++) {
 					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
-				c--;		
+				c1--;		
 			}
 			
 			//controllo 2 sx
-			c=4;
+			c1=4;
 			for(row=1; row<5; row++) {
-				for(col=0; col<c; col++) {
+				for(col=0; col<c1; col++) {
 					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
-				c--;		
+				c1--;		
 			}
 			
 			//controllo 1 dx
-			c=0;
+			c1=0;
 			for(row=0; row<5; row++) {
-				for(col=4; col>c; col--) {
+				for(col=4; col>c1; col--) {
 					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
-				c++;		
+				c1++;		
 			}
 			
 			//controllo 2 dx
-			c=0;
+			c1=0;
 			for(row=1; row<5; row++) {
-				for(col=4; col>c; col--) {
+				for(col=4; col>c1; col--) {
 					if(libreriaGiocatore.library[row][col].getType()==null) {
 						check=false;
 					}
 				}
-				c++;		
+				c1++;		
 			}
 			break;
 		}
