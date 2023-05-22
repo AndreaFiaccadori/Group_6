@@ -151,8 +151,9 @@ public class TesseraObiettivoComune {
 			String tileType2;
 			String tileType3;
 			String tileType4;
-			String tileTypeBonus1;
+			String[] tileTypeBonus1=new String[5];
 			Tile posizioneCopia[][]=new Tile[0][1];
+			int k=0;
 			
 			
 			
@@ -163,18 +164,22 @@ public class TesseraObiettivoComune {
 						tileType2=libraryCopy[row][col+1].getType();
 						tileType3=libraryCopy[row+1][col].getType();
 						tileType4=libraryCopy[row+1][col+1].getType();
-							if(tileType1==tileType2 && tileType1==tileType3 && tileType1==tileType4){		
-									contatore++;	
+							if(tileType1==tileType2 && tileType1==tileType3 && tileType1==tileType4){			
 									quadrato++;								
-									if(contatore==1) {
-										tileTypeBonus1=tileType1;
+									if(quadrato==1) {
+										tileTypeBonus1[k]=tileType1;
+										k++;
 										posizioneCopia[0][0]=libraryCopy[row+1][col];
 										posizioneCopia[0][1]=libraryCopy[row+1][col+1];
 									}
 									
-									if(contatore>1 || posizioneCopia[0][0]!=libraryCopy[row][col] 
-										|| posizioneCopia[0][1]!=libraryCopy[row][col+1] || tileTypeBonus1==tileType1) {
-										quadrato--;
+									if(quadrato>1 || posizioneCopia[0][0]!=libraryCopy[row][col] 
+										|| posizioneCopia[0][1]!=libraryCopy[row][col+1]) {
+										for(int r=0; r<6; r++) {
+											if(tileTypeBonus1[r]!=tileType1) {
+												quadrato=1;
+											}												
+										}										
 									}
 									col=col+2;
 							}						
