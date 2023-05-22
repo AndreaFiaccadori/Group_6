@@ -1,6 +1,8 @@
 package gioco;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class TesseraObiettivoComune {
 		
@@ -122,7 +124,8 @@ public class TesseraObiettivoComune {
 		boolean check=false;
 		int row=0;
 		int col=0;
-		
+		int contatore=0;		
+		Tile libraryCopy[][]=new Tile[row][col];
 		switch(a){
 		case 0:
 			
@@ -132,7 +135,9 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 2:
-			if(libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[0][4].getType() && libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[5][0].getType() && libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[5][4].getType()) {
+			if(libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[0][4].getType() && 
+			libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[5][0].getType() && 
+			libreriaGiocatore.library[0][0].getType()==libreriaGiocatore.library[5][4].getType()) {
 				check=true;
 			}else {
 				check=false;
@@ -140,15 +145,53 @@ public class TesseraObiettivoComune {
 			break;
 		
 		case 3:
+			int quadrato=0;
+			String tileType1;
+			String tileType2;
+			String tileType3;
+			String tileType4;
+			String tileTypeBonus1;
+			Tile posizioneCopia[][]=new Tile[0][1];
+			
+			
+			
+			for(row=0; row<4; row++) {
+				for(col=0; col<3; col++) {					
+						if(libreriaGiocatore.library[row][col].getType()!=null) {
+						tileType1=libraryCopy[row][col].getType();
+						tileType2=libraryCopy[row][col+1].getType();
+						tileType3=libraryCopy[row+1][col].getType();
+						tileType4=libraryCopy[row+1][col+1].getType();
+							if(tileType1==tileType2 && tileType1==tileType3 && tileType1==tileType4){		
+									contatore++;	
+									quadrato++;								
+									if(contatore==1) {
+										tileTypeBonus1=tileType1;
+										posizioneCopia[0][0]=libraryCopy[row+1][col];
+										posizioneCopia[0][1]=libraryCopy[row+1][col+1];
+									}
+									
+									if(contatore>1 || posizioneCopia[0][0]!=libraryCopy[row][col] 
+										|| posizioneCopia[0][1]!=libraryCopy[row][col+1] || tileTypeBonus1==tileType1) {
+										quadrato--;
+									}
+									col=col+2;
+							}						
+						}					
+				}	
+			}
+			if(quadrato>=2) {
+				check=true;
+			}else {
+				check=false;
+			}			
 			break;
 			
 		case 4:
 			break;
 			
 		case 5:
-			int contatore=0;
-			String tileType;		
-			Tile libraryCopy[][]=new Tile[row][col];
+			String tileType;
 			tileType=libraryCopy[row][col].getType();
 			if(tileType.contentEquals("cat")) {
 				for(row=0; row<5; row++) { 
@@ -272,11 +315,11 @@ public class TesseraObiettivoComune {
 		case 7:
 			int counter=0;
 			for (Tile[] rowContr : libreriaGiocatore) {
-				Set <String> row = new HashSet<>();	
+				Set <String> rows = new HashSet<>();	
 				for (Tile tileContr : rowContr) {	
-					row.add(String.valueOf(tileContr.getColor()));
+					rows.add(String.valueOf(tileContr.getColor()));
 				}
-				if (row.size()<=3) {
+				if (rows.size()<=3) {
 					counter++;
 				}
 			}
@@ -287,13 +330,13 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 8:
-			int counter=0;
+			 counter=0;
 			for (int countColumn=0; countColumn<5; countColumn++) {
-				Set <String> row = new HashSet<>();	
+				Set <String> rows = new HashSet<>();	
 				for (int countRow=0; countRow<6; countRow++) {		
-					row.add(String.valueOf(libreriaGiocatore.library[countRow][countColumn].getColor()));	
+					rows.add(String.valueOf(libreriaGiocatore.library[countRow][countColumn].getColor()));	
 				}
-				if (row.size()==6) {
+				if (rows.size()==6) {
 					counter++;}
 			}
 			if (counter>=2) {
@@ -303,13 +346,13 @@ public class TesseraObiettivoComune {
 			break;
 			
 		case 9:	
-			int counter=0;
+			 counter=0;
 			for (Tile[] rowContr : libreriaGiocatore) {
-				Set <String> row = new HashSet<>();	
+				Set <String> rows = new HashSet<>();	
 				for (Tile tileContr : rowContr) {	
-					row.add(String.valueOf(tileContr.getColor()));
+					rows.add(String.valueOf(tileContr.getColor()));
 				}
-				if (row.size()==5) {
+				if (rows.size()==5) {
 					counter++;}
 			}
 			if (counter>=2) {
