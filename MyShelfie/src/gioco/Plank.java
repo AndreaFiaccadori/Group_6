@@ -3,7 +3,7 @@ package gioco;
 public class Plank {
 	private static final int rows = 9;
 	private static final int cols = 9;
-	private int players;
+	private int numberOfPlayers;
 	
 	private Tile plank[][] = new Tile[rows][cols];
 
@@ -39,8 +39,8 @@ public class Plank {
 	 *    
 	*/
 	
-	public Plank(int nPlayers) {
-		players = nPlayers;
+	public Plank(int numberOfPlayers) {
+		this.numberOfPlayers = numberOfPlayers;
 		fillPlank(); // Fills the plank, according to the number of players
 	}
 	
@@ -48,7 +48,7 @@ public class Plank {
 	public void fillPlank() {
 		for(int i=0; i<rows; i++) {
 			for(int j=0; j<cols; j++) {
-				if(TILES_POSITIONS[i][j] <= players && plank[i][j] == null) {
+				if(TILES_POSITIONS[i][j] <= numberOfPlayers && plank[i][j] == null) {
 					plank[i][j] = new Tile();
 				}
 			}
@@ -76,28 +76,6 @@ public class Plank {
 		}
 		return s;
 	}
-	
-	/*
-	public void printPlank() {
-		System.out.print("  ");
-		for(int i=0; i<cols; i++) {
-			System.out.print(i + " ");
-		}
-		System.out.println();
-		
-		for(int i=0; i<rows; i++) {
-			System.out.print(i + " ");
-			for(int j=0; j<cols; j++) {
-				if(plank[i][j] != null) {
-					System.out.print(plank[i][j].getTypeId() + " ");
-				} else {
-					System.out.print("  ");
-				}
-			}
-			System.out.println();
-		}
-	}
-	*/
 	
 	// Checks if the cell given is a valid choice
 	public boolean isChoiceValid(int row1, int col1) {
@@ -173,16 +151,6 @@ public class Plank {
 		}
 	}
 	
-	/*
-	public Tile getTile(int row, int col) {
-		if(isChoiceValid(row, col)) {
-			return plank[row][col];
-		} else {
-			return null;
-		}
-	}
-	*/
-	
 	// Returns true if the plank needs to be refilled, returns false otherwise
 	public boolean isToFill() {
 		for(int i=0; i<rows; i++) {
@@ -199,5 +167,9 @@ public class Plank {
 			}
 		}
 		return true;
+	}
+	
+	public int getNumberOfPlayers() {
+		return this.numberOfPlayers;
 	}
 }
