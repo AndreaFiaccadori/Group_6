@@ -3,7 +3,12 @@ package gioco;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
+/**
+ * It rapresents the object, objective 
+ * common card
+ * @author Locatelli Giacomo
+ *
+ */
 public class TesseraObiettivoComune {
 	private static int COUNT=1;
 	public final int id;
@@ -11,14 +16,21 @@ public class TesseraObiettivoComune {
 	public TesseraObiettivoComune() {
 		this.id = COUNT++;
 	}
-	
-	public int draw_card() {	//pesca obiettivo comune 1
+	/**
+	 * draw the first objective common card
+	 * @return the number of the common card
+	 */
+	public int draw_card() {	
 		Random rand = new Random(); 	      
 	    int upperbound = 12;    
 	    int random = rand.nextInt(upperbound);
 	    return random;
 	}
-	
+	/**
+	 * draw the second objective common card
+	 * @param the number of the first common card
+	 * @return the number of the second common card
+	 */
 	public int draw_card2(int random1) {	//pesca obiettivo comune 2
 		int random2;
 		Random rand = new Random(); 	      
@@ -28,14 +40,12 @@ public class TesseraObiettivoComune {
 	    }while(random1 == random2);
 	    return random2;
 	}
-	
-	public void show_objective(int a, int b) { //mostra l'obiettivo 1-->a e 2-->b
-		int i=0;
-		System.out.println("Obiettivo 1:\n");
-		do {	
-		if(a==b) {
-			System.out.println("Obiettivo 2:\n");
-		}
+	/**
+	 * show the objective card goal
+	 * @param the number of the common card you want to show
+	 */
+	public void show_objective(int a) {
+		System.out.println("Obiettivo " + id + ":\n");
 		
 	    switch(a) {
 	    case 0: 
@@ -120,11 +130,13 @@ public class TesseraObiettivoComune {
 	    		+ "Tiles can be of any type. ");
 	    		 break;
 	    }
-	    i++;
-	    a=b;
-		}while(i != 2);
 	}
-	
+	/**
+	 * check if the common goal is verified
+	 * @param the number of the objective card you want to check
+	 * @param libreriaGiocatore
+	 * @return true if the goal is verified, false if not
+	 */
 	public boolean checkCommonGoals(int numeroTessera, Library libreriaGiocatore) {
 		boolean check=false;
 		int row=0;
