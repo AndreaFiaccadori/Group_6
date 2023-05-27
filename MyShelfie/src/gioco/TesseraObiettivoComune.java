@@ -5,7 +5,12 @@ import java.util.Random;
 import java.util.Set;
 
 public class TesseraObiettivoComune {
-		
+	private static int COUNT=1;
+	public final int id;
+	
+	public TesseraObiettivoComune() {
+		this.id = COUNT++;
+	}
 	
 	public int draw_card() {	//pesca obiettivo comune 1
 		Random rand = new Random(); 	      
@@ -120,16 +125,56 @@ public class TesseraObiettivoComune {
 		}while(i != 2);
 	}
 	
-	public boolean checkCommonGoals(int a, Library libreriaGiocatore) {
+	public boolean checkCommonGoals(int numeroTessera, Library libreriaGiocatore) {
 		boolean check=false;
 		int row=0;
 		int col=0;
 		int contatore=0;		
 		Tile libraryCopy[][]=new Tile[row][col];
 		String tileType;
-		switch(a){
+		switch(numeroTessera){
 		case 0:
+			String currentTile;
+			String nextTile;
+			String belowTile;
+			int orizontalCount=0;
+			int verticalCount=0;
+			Set<String> verticaleGiaControllato= new HashSet<>();
 			
+			for(row=0; row<6; row++) {
+				for(col=0; col<5; col++) {
+					currentTile=libreriaGiocatore.library[row][col].getType();
+					nextTile=libreriaGiocatore.library[row][col+1].getType();
+					if(currentTile!=null && nextTile!=null && currentTile==nextTile) {
+						orizontalCount++;
+						libreriaGiocatore.library[row][col]=null;
+						libreriaGiocatore.library[row][col+1]=null;
+						col++;
+					}
+				}
+			}
+			if(orizontalCount>=6) {
+				check=true;
+			}
+			
+			if(!check) {
+				for(col=0; col<5; col++) {
+					currentTile=libreriaGiocatore.library[row][col].getType();
+					belowTile=libreriaGiocatore.library[row+1][col].getType();
+					if(currentTile!=null && nextTile!=null && currentTile==nextTile && 
+						!verticaleGiaControllato.contains(currentTile) &&
+						!verticaleGiaControllato.contains(belowTile)) {
+							verticalCount++;
+							verticaleGiaControllato.add(currentTile);
+							verticaleGiaControllato.add(belowTile);
+					}
+				}
+			}
+			if((orizontalCount+verticalCount)>=6) {
+				check=true;
+			}else {
+				check=false;
+			}
 			break;
 			
 		case 1:
