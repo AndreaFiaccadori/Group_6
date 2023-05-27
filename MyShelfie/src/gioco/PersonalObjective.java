@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class PersonalObjective {
 	
-	final int row=6;
-	final int column=5;
-	String [][] cardGeneral= new String [row][column];
+	private final int row=6;
+	private final int column=5;
+	private String [][] cardGeneral= new String [row][column];
 	
 	/**
 	 * @param numCard numero della carta che si vuole creare
@@ -151,7 +151,7 @@ public class PersonalObjective {
 	 * @param numPlayer numero di giocatori
 	 * @return insieme di carte pescate per ogni giocatore
 	 */
-	public int [] drawCard (int numPlayer) {
+	static public int [] drawCard (int numPlayer) {
 		int [] extractions=new int [numPlayer];
 		int [] cardNotDraw =new int [12];		//array di numeri che posso estrarre
 		Random random = new Random();
