@@ -387,8 +387,7 @@ public class TesseraObiettivoComune {
 				return true;}
 			if (counter<4) {
 				return false;}
-			break;
-			
+			break;	
 		case 8:
 			 counter=0;
 			for (int countColumn=0; countColumn<5; countColumn++) {
@@ -404,7 +403,6 @@ public class TesseraObiettivoComune {
 			if (counter<2) {
 				return false;}
 			break;
-			
 		case 9:	
 			 counter=0;
 			for (Tile[] rowContr : libreriaGiocatore) {
@@ -420,47 +418,23 @@ public class TesseraObiettivoComune {
 			if (counter<2) {
 				return false;}
 			break;
-			
 		case 10:
 			String librColor, librColorCh, librColorCh1, librColorCh2, librColorCh3= new String ();
-			//controllo colonna centrale (2) a dx+1 e sx+1
 			for (int contRow=0; contRow<4; contRow++) {
-				librColor=String.valueOf(libreriaGiocatore.library[contRow][2].getColor());
-				librColorCh=String.valueOf(libreriaGiocatore.library[contRow][0].getColor());
-				librColorCh1=String.valueOf(libreriaGiocatore.library[contRow+2][2].getColor());
-				librColorCh2=String.valueOf(libreriaGiocatore.library[contRow+2][0].getColor());
-				librColorCh3=String.valueOf(libreriaGiocatore.library[contRow+1][1].getColor());
-				if (librColor.equals("null") || librColorCh.equals("null") || librColorCh1.equals("null") || librColorCh2.equals("null") || librColorCh3.equals("null")) {
-					continue;}
-				if (librColor==librColorCh && librColor==librColorCh1 && librColor==librColorCh2 && librColor==librColorCh3) {
-					return true;}
-				else {
-					librColorCh=String.valueOf(libreriaGiocatore.library[contRow][4].getColor());
-					librColorCh2=String.valueOf(libreriaGiocatore.library[contRow+2][4].getColor());
-					librColorCh3=String.valueOf(libreriaGiocatore.library[contRow+1][3].getColor());
-					
+				for (int contCol=0; contCol<3; contCol++) {
+					librColor=String.valueOf(libreriaGiocatore.library[contRow][contCol].getColor());
+					librColorCh=String.valueOf(libreriaGiocatore.library[contRow][contCol+2].getColor());
+					librColorCh1=String.valueOf(libreriaGiocatore.library[contRow+1][contCol+1].getColor());
+					librColorCh2=String.valueOf(libreriaGiocatore.library[contRow+2][contCol].getColor());
+					librColorCh3=String.valueOf(libreriaGiocatore.library[contRow+2][contCol+2].getColor());
 					if (librColor.equals("null") || librColorCh.equals("null") || librColorCh1.equals("null") || librColorCh2.equals("null") || librColorCh3.equals("null")) {
 						continue;}
 					if (librColor==librColorCh && librColor==librColorCh1 && librColor==librColorCh2 && librColor==librColorCh3) {
 						return true;}
 				}
 			}
-			//controllo colonna centrale (2) e obliquo dx e sx
-			for (int contRow=1; contRow<5; contRow++) {
-				librColor=String.valueOf(libreriaGiocatore.library[contRow][2].getColor());
-				librColorCh=String.valueOf(libreriaGiocatore.library[contRow-1][1].getColor());
-				librColorCh1=String.valueOf(libreriaGiocatore.library[contRow-1][3].getColor());
-				librColorCh2=String.valueOf(libreriaGiocatore.library[contRow+1][1].getColor());
-				librColorCh3=String.valueOf(libreriaGiocatore.library[contRow+1][3].getColor());
-
-				if (librColor.equals("null") || librColorCh.equals("null") || librColorCh1.equals("null") || librColorCh2.equals("null") || librColorCh3.equals("null")) {
-					continue;}		
-				if (librColor==librColorCh && librColor==librColorCh1 && librColor==librColorCh2 && librColor==librColorCh3) {
-					return true;}
-			}
 			return false;
 			break;
-			
 		case 11:
 			check=true;
 			//controllo 1 sx
