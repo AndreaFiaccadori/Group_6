@@ -472,10 +472,10 @@ public class CommonObjective {
 					counter++;}
 			}
 			if (counter>=2) {
-				check = true;
+				return true;
 			}
 			if (counter<2) {
-				check = false;
+				return false;
 			}
 			break;
 		case 9:	
