@@ -192,7 +192,6 @@ public class CommonObjective {
 		int row=0;
 		int col=0;
 		int contatore=0;
-		Tile libraryCopy[][]=new Tile[6][5];
 		String tileType;
 		
 		switch(numeroTessera){
@@ -339,20 +338,20 @@ public class CommonObjective {
 			for(row=5; row>0; row--) {
 				for(col=0; col<4; col++) {
 					if(libreriaGiocatore.library[row][col]!=null) {
-						tileType1=libraryCopy[row][col].getType();
-						tileType2=libraryCopy[row][col+1].getType();
-						tileType3=libraryCopy[row-1][col].getType();
-						tileType4=libraryCopy[row-1][col+1].getType();
+						tileType1=libreriaGiocatore.library[row][col].getType();
+						tileType2=libreriaGiocatore.library[row][col+1].getType();
+						tileType3=libreriaGiocatore.library[row-1][col].getType();
+						tileType4=libreriaGiocatore.library[row-1][col+1].getType();
 						if(tileType1.equals(tileType2) && tileType1.equals(tileType3) && tileType1.equals(tileType4)){			
 							quadrato++;								
 							if(quadrato==1) {
 								tileTypeBonus1[k]=tileType1;
 								k++;
-								posizioneCopia[0][0]=libraryCopy[row-1][col];
-								posizioneCopia[0][1]=libraryCopy[row-1][col+1];
+								posizioneCopia[0][0]=libreriaGiocatore.library[row-1][col];
+								posizioneCopia[0][1]=libreriaGiocatore.library[row-1][col+1];
 							}
-							if(quadrato>1 || !posizioneCopia[0][0].equals(libraryCopy[row][col] )
-							   || !posizioneCopia[0][1].equals(libraryCopy[row][col+1])) {
+							if(quadrato>1 || !posizioneCopia[0][0].equals(libreriaGiocatore.library[row][col] )
+							   || !posizioneCopia[0][1].equals(libreriaGiocatore.library[row][col+1])) {
 								for(int r=0; r<6; r++) {
 									if(!tileTypeBonus1[r].equals(tileType1)) {
 										quadrato=1;
@@ -381,7 +380,7 @@ public class CommonObjective {
 				for(row=0; row<6; row++) {
 					if(libreriaGiocatore.library[row][col] != null) {
 						
-						tileType=libraryCopy[row][col].getType();
+						tileType=libreriaGiocatore.library[row][col].getType();
 						
 						if(tileType.equals("cat")) {
 							c[0]++;
@@ -433,8 +432,8 @@ public class CommonObjective {
 			int contatoreFrame=0;
 			int contatoreTrophy=0;
 			int contatorePlant=0;		
-			if(libraryCopy[row][col] != null) {
-				tileType=libraryCopy[row][col].getType();
+			if(libreriaGiocatore.library[row][col] != null) {
+				tileType=libreriaGiocatore.library[row][col].getType();
 				for(row=0; row<6; row++) {
 					for(col=0; col<5; col++) {
 						if(tileType.equals("cat")) {
