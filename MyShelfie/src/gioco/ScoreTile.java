@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class ScoreTile {
 	private final String value; 
-	private final Player assigendPlayer;
+	//private final Player assigendPlayer;
 	private static ArrayList<String> possibleValues1=new ArrayList<String>();
 	private static ArrayList<String> possibleValues2=new ArrayList<String>();
 	private static int scoreIndex1;
 	private static int scoreIndex2;
-	public ScoreTile(CommonObjective commonObjective, Player assignedPlayer) {
-		this.assigendPlayer = assignedPlayer;
+	public ScoreTile(CommonObjective commonObjective/*, Player assignedPlayer*/) {
+		//this.assigendPlayer = assignedPlayer;
 		if(commonObjective.id==1) {
 			this.value=possibleValues1.get(scoreIndex1);
 			scoreIndex1--;
@@ -26,11 +26,13 @@ public class ScoreTile {
 		return value;
 	}
 
+	/*
 	public Player getAssigendPlayer() {
 		return assigendPlayer;
 	}
+	*/
 
-	public void createScoreTiles(int nPlayers) {
+	public static void createScoreTiles(int nPlayers) {
 		switch(nPlayers) {
 			case 2: possibleValues1.add("4");
 					possibleValues1.add("8");
