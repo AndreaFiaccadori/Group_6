@@ -190,7 +190,7 @@ public class Game {
 				}
 			}
 			
-			while(pickedTiles.size() > 0) {
+			while(pickedTiles.size() > 1) {
 				System.out.print("Here are your tiles:   ");
 				for(int i=0; i<pickedTiles.size(); i++) {
 					System.out.print(i + ": " + pickedTiles.get(i).getFirstTypeChar() + "  ");
@@ -205,6 +205,8 @@ public class Game {
 				currentPlayer.library.libraryFilling(pickedTiles.get(tileToInsert), column);
 				pickedTiles.remove(tileToInsert);
 			}
+			currentPlayer.library.libraryFilling(pickedTiles.get(0), column);
+			pickedTiles.remove(0);
 			scanner.nextLine();
 
             // Controlli e gestione del turno
