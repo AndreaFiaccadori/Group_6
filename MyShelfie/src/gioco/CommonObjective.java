@@ -373,7 +373,7 @@ public class CommonObjective {
 		case 4:
 			int escludi=0;
 			contatore=0;
-			int[] c=new int[5];
+			int[] c=new int[6];
 
 			for(col=0; col<5; col++) {
 				escludi=0;
