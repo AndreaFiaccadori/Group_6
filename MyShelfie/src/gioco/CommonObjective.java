@@ -457,9 +457,9 @@ public class CommonObjective {
 				}
 			}
 			if (counter>=4) {
-				return true;}
+				check = true;}
 			if (counter<4) {
-				return false;}
+				check = false;}
 			break;	
 		case 8:
 			 counter=0;
@@ -489,9 +489,9 @@ public class CommonObjective {
 					counter++;}
 			}
 			if (counter>=2) {
-				return true;}
+				check = true;}
 			if (counter<2) {
-				return false;}
+				check = false;}
 			break;
 		case 10:
 			String librColor, librColorCh, librColorCh1, librColorCh2, librColorCh3= new String ();
@@ -505,10 +505,12 @@ public class CommonObjective {
 					if (librColor.equals("null") || librColorCh.equals("null") || librColorCh1.equals("null") || librColorCh2.equals("null") || librColorCh3.equals("null")) {
 						continue;}
 					if (librColor==librColorCh && librColor==librColorCh1 && librColor==librColorCh2 && librColor==librColorCh3) {
-						return true;}
+						check = true;}
 				}
 			}
-			return false;
+			check = false;
+			break;
+			
 		case 11:
 			check=true;
 			//controllo 1 sx
