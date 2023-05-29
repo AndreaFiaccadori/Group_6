@@ -10,9 +10,9 @@ import java.util.Random;
  */
 public class Tile {
 	private static final int TYPES_COUNT = 6;
-	private static final String TYPES[]  =     {"cat",        "book",       "game",       "frame",       "trophy",       "plant"};
-	private static final String COLORS[] =     {"green",      "white",      "yellow",     "blue",        "cyan",         "pink"};
-	private static final String COLOR_CODES[] = {"\033[0;32m", "\033[0;37m", "\033[0;33m", "\033[0;34m",  "\033[0;36m",   "\033[0;95m"};
+	private static final String TYPES[]  =      {"cat",        "book",       "game",       "frame",       "trophy",       "plant"};
+	private static final String COLORS[] =      {"green",      "white",      "yellow",     "blue",        "cyan",         "pink"};
+	private static final String COLOR_CODES[] = {"\033[0;32m", "\033[0;37m", "\033[0;33m", "\033[0;94m",  "\033[0;96m",   "\033[0;95m"};
 	private final int type;
 	
 	/**

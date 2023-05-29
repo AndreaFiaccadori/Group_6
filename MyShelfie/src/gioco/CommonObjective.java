@@ -45,7 +45,7 @@ public class CommonObjective {
 	 * @param the number of the common card you want to show
 	 */
 	public void show_objective(int a) {
-		System.out.println("Obiettivo " + id + ":\n");
+		System.out.println("\033[0;32mObjective " + id + ":\033[0m");
 		
 	    switch(a) {
 	    case 0: 
@@ -89,7 +89,7 @@ public class CommonObjective {
 	    		break;
 	    		
 	    case 5: 
-	    		System.out.println("Eight tiles of the same type. There’s no\r\n"
+	    		System.out.println("Eight tiles of the same type. There's no\r\n"
 	    		+ "restriction about the position of these\r\n"
 	    		+ "tiles.");
 	    		break;
@@ -457,9 +457,9 @@ public class CommonObjective {
 				}
 			}
 			if (counter>=4) {
-				check = true;}
+				return true;}
 			if (counter<4) {
-				check = false;}
+				return false;}
 			break;	
 		case 8:
 			 counter=0;
@@ -489,9 +489,9 @@ public class CommonObjective {
 					counter++;}
 			}
 			if (counter>=2) {
-				check = true;}
+				return true;}
 			if (counter<2) {
-				check = false;}
+				return false;}
 			break;
 		case 10:
 			String librColor, librColorCh, librColorCh1, librColorCh2, librColorCh3= new String ();
@@ -505,12 +505,10 @@ public class CommonObjective {
 					if (librColor.equals("null") || librColorCh.equals("null") || librColorCh1.equals("null") || librColorCh2.equals("null") || librColorCh3.equals("null")) {
 						continue;}
 					if (librColor==librColorCh && librColor==librColorCh1 && librColor==librColorCh2 && librColor==librColorCh3) {
-						check = true;}
+						return true;}
 				}
 			}
-			check = false;
-			break;
-			
+			return false;
 		case 11:
 			check=true;
 			//controllo 1 sx

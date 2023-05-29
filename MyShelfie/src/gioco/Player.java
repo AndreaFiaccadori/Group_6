@@ -3,7 +3,7 @@ package gioco;
 public class Player {
 
 	private String nickname;
-	public Library library;
+	public Library library = new Library();
 	private int order;
 	public PersonalObjective personalObjective;
 	static private ScoreTile scoreTile1;

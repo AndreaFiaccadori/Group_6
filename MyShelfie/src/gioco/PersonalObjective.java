@@ -6,13 +6,13 @@ public class PersonalObjective {
 	
 	private final int row=6;
 	private final int column=5;
-	private String [][] cardGeneral= new String [row][column];
+	private String [][] card= new String [row][column];
 	
 	/**
 	 * @param numCard numero della carta che si vuole creare
 	 */
 	public PersonalObjective (int numCard) {
-		String [][] card=this.cardGeneral;
+		//String [][] card=this.cardGeneral;
 		switch (numCard) {
 		
 			case 0:
@@ -131,13 +131,14 @@ public class PersonalObjective {
 	 * @return ritorna il colore di una cella all'interno della carta obbiettivo personale
 	 */
 	public String getColor(int row, int column) {
-		return String.valueOf(this.cardGeneral[row][column]);
+		return String.valueOf(this.card[row][column]);
 	}
 	
 	
 	//STAMPARE OBIETTIVO PERSONALE
 	public void printCard () {
-		for (String [] str: this.cardGeneral) {
+		System.out.println("\033[0;32mHere's your personal objective:\033[0m");
+		for (String [] str: this.card) {
 			for(String str1: str) {
 				System.out.print(str1+" ");
 			}

@@ -91,7 +91,7 @@ public class Library {
 	 * @param column the column the player chose to fill
 	 */
 	public void libraryFilling(Tile t,int column) {
-		for(int cont=this.rows-1;cont<0;cont--) {
+		for(int cont=this.rows-1; cont>=0; cont--) {
 			if(this.library[cont][column]==null) {
 				this.library[cont][column]=t;
 				return;
@@ -115,9 +115,14 @@ public class Library {
 	 * This method is used to print the library and all its tiles
 	 */
 	public void printLibrary() {
+		System.out.println(" 0  1  2  3  4");
 		for(int row=0;row<this.rows;row++) {
 			for(int col=0;col<this.columns;col++) {
-				System.out.print("["+this.library[row][col].getFirstTypeChar()+"]");
+				if(this.library[row][col] == null) {
+					System.out.print("[ ]");
+				} else {
+					System.out.print("["+this.library[row][col].getFirstTypeChar()+"]");
+				}
 			}
 			System.out.println();
 		}
