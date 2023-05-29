@@ -54,8 +54,9 @@ public class CommonObjective {
 	    		+ "in the depicted shape).\r\n"
 	    		+ "The tiles of one group can be different\r\n"
 	    		+ "from those of another group");
-	    		System.out.println("\n\t*****\n"+"\t*   *\n"+"\t*   *\n"+"\t* = *\n"+"\t*   *\n"+"\t*   *\n"
-				+"\t*****\n"+"\t*   *\n"+"\t*   *\n"+"\t* = *\n"+"\t*   *\n"+"\t*   *\n"+"\t*****\n");
+	    		System.out.println("[=]");
+	    		System.out.println("[=]");
+	    		System.out.println("x6");
 	    		break;
 	    
 	    case 1: 
@@ -64,14 +65,23 @@ public class CommonObjective {
 	    		+ "in the depicted shape).\r\n"
 	    		+ "The tiles of one group can be different\r\n"
 	    		+ "from those of another group.");		
-	    		System.out.println("\n\t*****\n"+"\t*   *\n"+"\t* = *\n"+"\t*   *\n"
-				+"\t*****\n"+"\t*   *\n"+"\t* = *\n"+"\t*   *\n"+"\t*****\n"+"\t*   *\n"+"\t* = *\n"+"\t*   *\n"
-				+"\t*****\n"+"\t*   *\n"+"\t* = *\n"+"\t*   *\n"+"\t*****\n");
+	    		System.out.println("[=]");
+	    		System.out.println("[=]");
+	    		System.out.println("[=]");
+	    		System.out.println("[=]");
+	    		System.out.println("x4");
+	    		
 	    		break;
 	    		
 	    case 2: 
 	    		System.out.println("Four tiles of the same type in the four\r\n"
 	    		+ "corners of the bookshelf.");
+	    		System.out.println("[=][ ][ ][ ][=]");
+	    		System.out.println("[ ][ ][ ][ ][ ]");
+	    		System.out.println("[ ][ ][ ][ ][ ]");
+	    		System.out.println("[ ][ ][ ][ ][ ]");
+	    		System.out.println("[ ][ ][ ][ ][ ]");
+	    		System.out.println("[=][ ][ ][ ][=]");
 	    		break;
 	    		
 	    case 3: 
@@ -79,6 +89,9 @@ public class CommonObjective {
 	    		+ "the same type in a 2x2 square. The tiles\r\n"
 	    		+ "of one square can be different from\r\n"
 	    		+ "those of the other square.");
+	    		System.out.println("[=][=]");
+	    		System.out.println("[=][=]");
+	    		System.out.println("x2");
 	    		break;
 	    		
 	    case 4: 
@@ -86,17 +99,34 @@ public class CommonObjective {
 	    		+ "of maximum three different types. One\r\n"
 	    		+ "column can show the same or a different\r\n"
 	    		+ "combination of another column.");
+	    		System.out.println("[ ]");
+	    		System.out.println("[ ]");
+	    		System.out.println("[ ]" + "\tmax 3 [!=]");
+	    		System.out.println("[ ]");
+	    		System.out.println("[ ]");
+	    		System.out.println("[ ]");
+	    		System.out.println("x3");
+	    	
 	    		break;
 	    		
 	    case 5: 
 	    		System.out.println("Eight tiles of the same type. There's no\r\n"
 	    		+ "restriction about the position of these\r\n"
 	    		+ "tiles.");
+	    		System.out.println("  [=] [=]");
+	    		System.out.println("[=] [=] [=]");
+	    		System.out.println("[=] [=] [=]");
 	    		break;
 	    		
 	    case 6: 
 	    		System.out.println("Five tiles of the same type forming a\r\n"
 	    		+ "diagonal. ");
+	    		System.out.println("[=]");
+	    		System.out.println("   [=]");
+	    		System.out.println("      [=]");
+	    		System.out.println("         [=]");
+	    		System.out.println("            [=]");
+	    	
 	    		break;
 	    		
 	    case 7: 
@@ -104,11 +134,21 @@ public class CommonObjective {
 	    		+ "maximum three different types. One\r\n"
 	    		+ "line can show the same or a different\r\n"
 	    		+ "combination of another line.");
+	    		System.out.println("[ ][ ][ ][ ][ ]");
+	    		System.out.println("  max 3 [!=]");
+	    		System.out.println("     x4");
 	    		break;
 	    		
 	    case 8: 
 	    		System.out.println("Two columns each formed by 6\r\n"
 	    		+ "different types of tiles. ");
+	    		System.out.println("[!=]");
+	    		System.out.println("[!=]");
+	    		System.out.println("[!=]");
+	    		System.out.println("[!=]");
+	    		System.out.println("[!=]");
+	    		System.out.println("[!=]");
+	    		System.out.println("x2");
 	    		break;
 	    		
 	    case 9: 
@@ -116,10 +156,15 @@ public class CommonObjective {
 	    		+ "types of tiles. One line can show the\r\n"
 	    		+ "same or a different combination of the\r\n"
 	    		+ "other line.");
+	    		System.out.println("[!=][!=][!=][!=][!=]");
+	    		System.out.println("         x2");
 	    		break;
 	    		
 	    case 10: 
 	    		 System.out.println("Five tiles of the same type forming an X.");
+	    		 System.out.println("[=]   [=]");
+	    		 System.out.println("   [=]");
+		    	 System.out.println("[=]   [=]");
 	    		 break;
 	    		 
 	    case 11: 
@@ -128,6 +173,11 @@ public class CommonObjective {
 	    		+ "the left or on the right, each next column\r\n"
 	    		+ "must be made of exactly one more tile.\r\n"
 	    		+ "Tiles can be of any type. ");
+	    		System.out.println("[ ]");
+	    		System.out.println("[ ][ ]");
+	    		System.out.println("[ ][ ][ ]");
+	    		System.out.println("[ ][ ][ ][ ]");
+	    		System.out.println("[ ][ ][ ][ ][ ]");
 	    		 break;
 	    }
 	}
