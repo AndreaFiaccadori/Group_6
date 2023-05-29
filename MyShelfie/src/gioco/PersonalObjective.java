@@ -8,11 +8,15 @@ public class PersonalObjective {
 	private final int column=5;
 	private String [][] card= new String [row][column];
 	
+	private final String colors[] = {"green", "white", "yellow", "blue",  "cyan",   "pink"};
+	private final String colorCodes[] = {"\033[0;32m", "\033[0;37m", "\033[0;33m", "\033[0;34m",  "\033[0;36m",   "\033[0;95m"};
+	private final String types[]  = {"cat",   "book",  "game",   "frame", "trophy", "plant"};
+	private final String reset = "\033[0m";
+	
 	/**
 	 * @param numCard numero della carta che si vuole creare
 	 */
 	public PersonalObjective (int numCard) {
-		//String [][] card=this.cardGeneral;
 		switch (numCard) {
 		
 			case 0:
@@ -133,14 +137,20 @@ public class PersonalObjective {
 	public String getColor(int row, int column) {
 		return String.valueOf(this.card[row][column]);
 	}
-	
-	
-	//STAMPARE OBIETTIVO PERSONALE
+		
 	public void printCard () {
 		System.out.println("\033[0;32mHere's your personal objective:\033[0m");
-		for (String [] str: this.card) {
-			for(String str1: str) {
-				System.out.print(str1+" ");
+		for (String [] contRow: this.card) {
+			for(String contCol: contRow) {
+				if (contCol==null) {
+					System.out.print("[ ]");
+					continue;
+				}
+				for (int cont=0; cont<6; cont ++) {
+					if (colors[cont].equals(contCol)) {
+						System.out.print("[" + colorCodes[cont] + types[cont].charAt(0) + reset+"]");
+					}
+				}
 			}
 			System.out.println();
 		}
