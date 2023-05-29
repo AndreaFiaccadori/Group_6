@@ -1,21 +1,22 @@
-package Myshelfie;
+package gioco;
 
 import java.util.ArrayList;
 
 public class ScoreTile {
 	private final String value; 
-	private final int assigendPlayer;
+	private final Player assigendPlayer;
 	private static ArrayList<String> possibleValues1=new ArrayList<String>();
 	private static ArrayList<String> possibleValues2=new ArrayList<String>();
 	private static int scoreIndex1;
 	private static int scoreIndex2;
-	public ScoreTile(int player/*,CommonObjective commonObjective*/) {
-		if(/*commonObjective.get()==1*/) {
+	public ScoreTile(CommonObjective commonObjective, Player assignedPlayer) {
+		this.assigendPlayer = assignedPlayer;
+		if(commonObjective.id==1) {
 			this.value=possibleValues1.get(scoreIndex1);
 			scoreIndex1--;
 			
 		}
-		else if(/*commonObjective.get()==2*/) {
+		else {
 			this.value=possibleValues2.get(scoreIndex2);
 			scoreIndex2--;
 		}
@@ -25,7 +26,7 @@ public class ScoreTile {
 		return value;
 	}
 
-	public int getAssigendPlayer() {
+	public Player getAssigendPlayer() {
 		return assigendPlayer;
 	}
 

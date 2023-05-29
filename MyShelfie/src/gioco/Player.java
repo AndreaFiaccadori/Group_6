@@ -1,15 +1,28 @@
-package Myshelfie;
+package gioco;
 
 public class Player {
 
-	private final String nickname;
-	private final int order;
-	private Tile[][] library;
-	static private PersonalObjective personalObjective;
+	private String nickname;
+	public Library library;
+	private int order;
+	public PersonalObjective personalObjective;
 	static private ScoreTile scoreTile1;
 	static private ScoreTile scoreTile2;
-	public Player(String nickname, int order) {
+	public Player(int order) {
+		this.order = order;
+	}
+
+	public String getNickname() {
+		return this.nickname;
+	}
+	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public int getOrder() {
+		return this.order;
+	}
+	public void setOrder(int order) {
 		this.order = order;
 	}
 	

@@ -174,7 +174,7 @@ public class PersonalObjective {
 	 * @param personalCard carta obbiettivo estratta
 	 * @return punteggio del giocatore
 	 */
-	public int playerScore (Library personalLibrary, Card personalCard) {
+	public int playerScore (Library personalLibrary, PersonalObjective personalCard) {
 		int score=0;
 		String cardColor=new String();
 		String libraryColor=new String();
