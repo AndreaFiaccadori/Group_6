@@ -197,32 +197,39 @@ public class Library {
 			checkedTiles[nChecked*2]=row;
 			checkedTiles[nChecked*2+1]=col;
 			nChecked++;
-			if(this.library[row-1][col].getType()==type) { 
-				if(contains(adjacentTiles,row-1,col)==false) {
-					sum++;
-					adjacentTiles[nAdjacent*2]=row;
-					adjacentTiles[nAdjacent*2+1]=col;
+			if(!this.library[row-1][col].getType().equals(null)) {
+				if(this.library[row-1][col].getType().equals(type)) { 
+					if(contains(adjacentTiles,row-1,col)==false) {
+						sum++;
+						adjacentTiles[nAdjacent*2]=row;
+						adjacentTiles[nAdjacent*2+1]=col;
+					}
 				}
 			}
-			if(this.library[row+1][col].getType()==type) {
-				if(contains(adjacentTiles,row+1,col)==false) {
-					sum++;
-					adjacentTiles[nAdjacent*2]=row;
-					adjacentTiles[nAdjacent*2+1]=col;
+			if(!this.library[row-1][col].getType().equals(null)) {
+				if(this.library[row+1][col].getType().equals(type)) {
+					if(contains(adjacentTiles,row+1,col)==false) {
+						sum++;
+						adjacentTiles[nAdjacent*2]=row;
+						adjacentTiles[nAdjacent*2+1]=col;
+					}
 				}
 			}
-			if(this.library[row][col-1].getType()==type) 
-				if(contains(adjacentTiles,row,col-1)==false) {
-					sum++;
-					adjacentTiles[nAdjacent*2]=row;
-					adjacentTiles[nAdjacent*2+1]=col;
-				}
-
-			if(this.library[row][col+1].getType()==type) {
-				if(contains(adjacentTiles,row,col+1)==false) {
-					sum++;
-					adjacentTiles[nAdjacent*2]=row;
-					adjacentTiles[nAdjacent*2+1]=col;
+			if(!this.library[row-1][col].getType().equals(null)) {
+				if(this.library[row][col-1].getType().equals(type)) 
+					if(contains(adjacentTiles,row,col-1)==false) {
+						sum++;
+						adjacentTiles[nAdjacent*2]=row;
+						adjacentTiles[nAdjacent*2+1]=col;
+					}
+			}
+			if(!this.library[row-1][col].getType().equals(null)) {
+				if(this.library[row][col+1].getType().equals(type)) {
+					if(contains(adjacentTiles,row,col+1)==false) {
+						sum++;
+						adjacentTiles[nAdjacent*2]=row;
+						adjacentTiles[nAdjacent*2+1]=col;
+					}
 				}
 			}
 			int val=whichTile(adjacentTiles,checkedTiles);
