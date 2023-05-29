@@ -115,17 +115,21 @@ public class Library {
 	 * This method is used to print the library and all its tiles
 	 */
 	public void printLibrary() {
-		System.out.println(" 0  1  2  3  4");
+		System.out.println("  0  1  2  3  4");
+		System.out.println(" _______________");
 		for(int row=0;row<this.rows;row++) {
+			System.out.print("|");
 			for(int col=0;col<this.columns;col++) {
+				
 				if(this.library[row][col] == null) {
 					System.out.print("[ ]");
 				} else {
 					System.out.print("["+this.library[row][col].getFirstTypeChar()+"]");
 				}
 			}
-			System.out.println();
+			System.out.println("|");
 		}
+		System.out.println(" _______________");
 	}
 	/**
 	 * The main method for the score system that add points based on how many tiles of the same type are adjacent.
