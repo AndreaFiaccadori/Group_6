@@ -585,21 +585,17 @@ public class CommonObjective {
 			for (int contRow=0; contRow<4; contRow++) {
 				for (int contCol=0; contCol<3; contCol++) {
 					if(libreriaGiocatore.library[contRow][contCol]!=null && libreriaGiocatore.library[contRow][contCol+2]!=null 
-						&& libreriaGiocatore.library[contRow+1][contCol+1]!=null && libreriaGiocatore.library[contRow+2][contCol]!=null 
-						&&  libreriaGiocatore.library[contRow+2][contCol+2]!=null) {
-							librColor=String.valueOf(libreriaGiocatore.library[contRow][contCol].getColor());
-							librColorCh=String.valueOf(libreriaGiocatore.library[contRow][contCol+2].getColor());
-							librColorCh1=String.valueOf(libreriaGiocatore.library[contRow+1][contCol+1].getColor());
-							librColorCh2=String.valueOf(libreriaGiocatore.library[contRow+2][contCol].getColor());
-							librColorCh3=String.valueOf(libreriaGiocatore.library[contRow+2][contCol+2].getColor());
-							if (librColor.equals("null") || librColorCh.equals("null") || librColorCh1.equals("null") || librColorCh2.equals("null") || librColorCh3.equals("null")) {
-								continue;
-							}
-							if (librColor==librColorCh && librColor==librColorCh1 && librColor==librColorCh2 && librColor==librColorCh3) {
-								return true;
-							}
+					&& libreriaGiocatore.library[contRow+1][contCol+1]!=null && libreriaGiocatore.library[contRow+2][contCol]!=null 
+					&&  libreriaGiocatore.library[contRow+2][contCol+2]!=null) {
+						librColor=String.valueOf(libreriaGiocatore.library[contRow][contCol].getColor());
+						librColorCh=String.valueOf(libreriaGiocatore.library[contRow][contCol+2].getColor());
+						librColorCh1=String.valueOf(libreriaGiocatore.library[contRow+1][contCol+1].getColor());
+						librColorCh2=String.valueOf(libreriaGiocatore.library[contRow+2][contCol].getColor());
+						librColorCh3=String.valueOf(libreriaGiocatore.library[contRow+2][contCol+2].getColor());
+						if (librColorCh.equals(librColor) && librColorCh1.equals(librColor) && librColorCh2.equals(librColor) && librColorCh3.equals(librColor)) {
+						return true;
+						}
 					}
-					
 				}
 			}
 			return false;
