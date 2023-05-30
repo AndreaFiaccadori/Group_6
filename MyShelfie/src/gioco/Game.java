@@ -22,13 +22,23 @@ public class Game {
     }
     
     public int askNumberOfPlayers() {
-        System.out.print("Insert the number of players (2-4): ");
-        int players = scanner.nextInt();
-		while(players<2 || players>4) {
-			System.out.print("There can only be 2, 3 or 4 players. How many people will be playing? ");
-			players = scanner.nextInt();
-		}
-		return players;
+    	int players = 0;
+        boolean isValidInput = false;
+        while(!isValidInput) {
+            System.out.print("Insert the number of players (2-4): ");
+            String input = scanner.nextLine();
+            try {
+            	players = Integer.parseInt(input);
+            	if(players>=2 && players<=4) {
+            		isValidInput = true;
+            	} else {
+            		System.out.print("Invalid number of players. ");
+            	}
+            } catch(NumberFormatException e) {
+            	System.out.print("The input is not valid. ");
+            }
+        }
+        return players;
     }
 
     public void createPlayers(int playersNumber) {
@@ -36,18 +46,15 @@ public class Game {
         	Player player = new Player();
             players.add(player);
         }
-        Collections.shuffle(players);
     }
     
     public void executeGame() {
         System.out.println("Welcome to MyShelfie! Let's begin the game!");
-
+        
         int playersNumber = askNumberOfPlayers();
         createPlayers(playersNumber);
         int[] objectives = PersonalObjective.drawCard(playersNumber);
         
-        scanner.nextLine();
-
         // Chiedi il nickname a ciascun giocatore
         for (int i=0; i<playersNumber; i++) {
             System.out.print("Insert nickname for player " + (i+1) + ": ");
@@ -55,25 +62,26 @@ public class Game {
             players.get(i).setNickname(nickname);
             players.get(i).personalObjective = new PersonalObjective(objectives[i]);
         }
-
+        Collections.shuffle(players);
+        
         // Estrai le carte obiettivo comune
         CommonObjective commonObjective1=new CommonObjective();
         CommonObjective commonObjective2=new CommonObjective();
         int n1 = commonObjective1.draw_card();
         int n2 = commonObjective1.draw_card2(n1);
-
+        
         // Scegli casualmente chi inizia
         
         //Player currentPlayer = players.get(indice_Giocatore_Iniziale);
         
         
-
+        
         // Riempi la plancia 
         Plank plank=new Plank(playersNumber);
-
+        
         boolean gameEnded = false;
         ScoreTile.createScoreTiles(playersNumber);
-
+        
         int commonObjective1Counter = 0;
         int commonObjective2Counter = 0;
         
