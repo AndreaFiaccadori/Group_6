@@ -1,5 +1,6 @@
 package gioco;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -194,6 +195,7 @@ public class CommonObjective {
 		int col=0;
 		int contatore=0;
 		String tileType;
+		int k=0;
 		
 		switch(numeroTessera){
 		
@@ -206,7 +208,7 @@ public class CommonObjective {
 			Set<String> verticaleGiaControllato= new HashSet<>();
 			
 			for(row=0; row<6; row++) {
-				for(col=0; col<5; col++) {
+				for(col=0; col<4; col++) {
 					if(libreriaGiocatore.library[row][col] != null && libreriaGiocatore.library[row][col+1] != null) {
 						currentTile=libreriaGiocatore.library[row][col].getType();
 						nextTile=libreriaGiocatore.library[row][col+1].getType();
@@ -214,7 +216,7 @@ public class CommonObjective {
 							orizontalCount++;
 							libreriaGiocatore.library[row][col]=null;
 							libreriaGiocatore.library[row][col+1]=null;
-							col++;
+							col++;								
 						}
 					}
 				}
@@ -332,14 +334,13 @@ public class CommonObjective {
 			String tileType1;
 			String tileType2;
 			String tileType3;
-			String tileType4;
-			String[] tileTypeBonus1=new String[6];
-			Tile posizioneCopia[][]=new Tile[2][1];
-			int k=0;
-			
+			String tileType4;		
 			
 			
 			for(row=5; row>0; row--) {
+				if(quadrato>=1) {
+					row--;
+				}
 				for(col=0; col<4; col++) {
 					if(libreriaGiocatore.library[row][col]!=null && libreriaGiocatore.library[row][col+1]!=null && 
 						libreriaGiocatore.library[row-1][col]!=null && libreriaGiocatore.library[row-1][col+1]!=null) {
@@ -349,20 +350,6 @@ public class CommonObjective {
 						tileType4=libreriaGiocatore.library[row-1][col+1].getType();
 						if(tileType1.equals(tileType2) && tileType1.equals(tileType3) && tileType1.equals(tileType4)){			
 							quadrato++;								
-							if(quadrato==1) {
-								tileTypeBonus1[k]=tileType1;
-								k++;
-								posizioneCopia[0][0]=libreriaGiocatore.library[row-1][col];
-								posizioneCopia[1][0]=libreriaGiocatore.library[row-1][col+1];
-							}
-							if(quadrato>1 || !posizioneCopia[0][0].equals(libreriaGiocatore.library[row][col] )
-							   || !posizioneCopia[1][0].equals(libreriaGiocatore.library[row][col+1])) {
-								for(int r=0; r<6; r++) {
-									if(!tileTypeBonus1[r].equals(tileType1)) {
-										quadrato=1;
-									}												
-								}										
-							}
 							col=col+2;
 						}						
 					}					
@@ -379,45 +366,43 @@ public class CommonObjective {
 			int escludi=0;
 			contatore=0;
 			int[] c=new int[6];
-
 			for(col=0; col<5; col++) {
+				Arrays.fill(c, 0);
 				escludi=0;
 				for(row=0; row<6; row++) {
 					if(libreriaGiocatore.library[row][col] != null) {
 						
-						tileType=libreriaGiocatore.library[row][col].getType();
-						
-						if(tileType.equals("cat")) {
+						if(libreriaGiocatore.library[row][col].getType().equals("cat")) {
 							c[0]++;
 						}
 						
-						if(tileType.equals("book")) {
+						if(libreriaGiocatore.library[row][col].getType().equals("book")) {
 							c[1]++;
 						}
 						
-						if(tileType.equals("game")) {
+						if(libreriaGiocatore.library[row][col].getType().equals("game")) {
 							c[2]++;
 						}
 						
-						if(tileType.equals("frame")) {
+						if(libreriaGiocatore.library[row][col].getType().equals("frame")) {
 							c[3]++;
 						}
 						
-						if(tileType.equals("trophy")) {
+						if(libreriaGiocatore.library[row][col].getType().equals("trophy")) {
 							c[4]++;
 						}
 						
-						if(tileType.equals("plant")) {
+						if(libreriaGiocatore.library[row][col].getType().equals("plant")) {
 							c[5]++;
 						}
 						
 					}else {
 						escludi=1;
 					}
-				}
-				if(escludi!=1) {
-					if(c[0]<=3 && c[1]<=3 && c[2]<=3 && c[3]<=3 && c[4]<=3 && c[5]<=3) {
-						contatore++;
+					if(escludi==0) {
+						if(c[0]<=3 && c[1]<=3 && c[2]<=3 && c[3]<=3 && c[4]<=3 && c[5]<=3) {
+							contatore++;
+						}
 					}
 				}
 			}
@@ -601,19 +586,9 @@ public class CommonObjective {
 			return false;
 		case 11:
 			check=true;
-			//controllo 1 sx
-			k=-1;
-			for(col=0; col<5; col++) {
-				for(row=4; row>k; row--) {
-					if(libreriaGiocatore.library[row][col]==null) {
-						check=false;
-					}
-				}
-				k++;		
-			}
 			
-			//controllo 2 sx
-			if(check) {
+			//controllo sx
+			
 				k=0;
 				for(col=0; col<5; col++) {
 					for(row=5; row>k; row--) {
@@ -623,24 +598,9 @@ public class CommonObjective {
 					}
 					k++;		
 				}
-			}
-			
-			
-			//controllo 1 dx
-			if(check) {
-				k=-1;
-				for(col=4; col>-1; col--) {
-					for(row=4; row>k; row--) {
-						if(libreriaGiocatore.library[row][col]==null) {
-							check=false;
-						}
-					}
-					k++;		
-				}
-			}
 				
-			//controllo 2 dx
-			if(check) {
+			//controllo dx
+			if(!check) {
 				k=0;
 				for(col=4; col>-1; col--) {
 					for(row=5; row>k; row--) {
