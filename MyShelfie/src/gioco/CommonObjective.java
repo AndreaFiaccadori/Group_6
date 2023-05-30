@@ -45,7 +45,7 @@ public class CommonObjective {
 	 * @param the number of the common card you want to show
 	 */
 	public void show_objective(int a) {
-		System.out.println("\033[0;32mObjective " + id + ":\033[0m");
+		System.out.println("\033[0;32mCommon objective " + id + ":\033[0m");
 		
 	    switch(a) {
 	    case 0: 
@@ -91,7 +91,7 @@ public class CommonObjective {
 	    		+ "those of the other square.");
 	    		System.out.println("[=][=]");
 	    		System.out.println("[=][=]");
-	    		System.out.println("x2");
+	    		System.out.println("  x2");
 	    		break;
 	    		
 	    case 4: 
@@ -135,8 +135,9 @@ public class CommonObjective {
 	    		+ "line can show the same or a different\r\n"
 	    		+ "combination of another line.");
 	    		System.out.println("[ ][ ][ ][ ][ ]");
-	    		System.out.println("  max 3 [!=]");
 	    		System.out.println("     x4");
+	    		System.out.println("  max 3 [!=]");
+	    		
 	    		break;
 	    		
 	    case 8: 
@@ -333,7 +334,7 @@ public class CommonObjective {
 			String tileType3;
 			String tileType4;
 			String[] tileTypeBonus1=new String[6];
-			Tile posizioneCopia[][]=new Tile[0][1];
+			Tile posizioneCopia[][]=new Tile[2][1];
 			int k=0;
 			
 			
@@ -352,10 +353,10 @@ public class CommonObjective {
 								tileTypeBonus1[k]=tileType1;
 								k++;
 								posizioneCopia[0][0]=libreriaGiocatore.library[row-1][col];
-								posizioneCopia[0][1]=libreriaGiocatore.library[row-1][col+1];
+								posizioneCopia[1][0]=libreriaGiocatore.library[row-1][col+1];
 							}
 							if(quadrato>1 || !posizioneCopia[0][0].equals(libreriaGiocatore.library[row][col] )
-							   || !posizioneCopia[0][1].equals(libreriaGiocatore.library[row][col+1])) {
+							   || !posizioneCopia[1][0].equals(libreriaGiocatore.library[row][col+1])) {
 								for(int r=0; r<6; r++) {
 									if(!tileTypeBonus1[r].equals(tileType1)) {
 										quadrato=1;

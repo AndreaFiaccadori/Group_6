@@ -98,17 +98,19 @@ public class Game {
                 System.out.println();
                 System.out.println("--------------------------------------");
                 System.out.println();
-               
+                
+                players.get(p).library.printLibrary();
+                                
+                System.out.println();
+                System.out.println("--------------------------------------");
+                System.out.println();
+                
                 players.get(p).personalObjective.printCard();
                 
                 System.out.println();
                 System.out.println("--------------------------------------");
                 System.out.println();
                 
-                players.get(p).library.printLibrary();
-                
-                System.out.println();
-       
                 System.out.println(legend);
                 
                 System.out.println();
