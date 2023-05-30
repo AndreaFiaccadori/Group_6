@@ -9,7 +9,7 @@ public class PersonalObjective {
 	private String [][] card= new String [row][column];
 	
 	private final String colors[] = {"green", "white", "yellow", "blue",  "cyan",   "pink"};
-	private final String colorCodes[] = {"\033[0;32m", "\033[0;37m", "\033[0;33m", "\033[0;34m",  "\033[0;36m",   "\033[0;95m"};
+	private final String colorCodes[] = {"\033[0;32m", "\033[0;37m", "\033[0;33m", "\033[0;94m",  "\033[0;96m",   "\033[0;95m"};
 	private final String types[]  = {"cat",   "book",  "game",   "frame", "trophy", "plant"};
 	private final String reset = "\033[0m";
 	

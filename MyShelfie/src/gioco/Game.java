@@ -85,15 +85,34 @@ public class Game {
                 
                 // Ciclo 1 - Turno del giocatore corrente
                 System.out.println("\n\nIt's " + players.get(p).getNickname() + "'s turn");
-                System.out.println("-----");
+                System.out.println("--------------------------------------");
 
                 commonObjective1.show_objective(n1);
+                
+                System.out.println();
+                System.out.println("--------------------------------------");
+                System.out.println();
+                
                 commonObjective2.show_objective(n2);
-
+                
+                System.out.println();
+                System.out.println("--------------------------------------");
+                System.out.println();
+               
                 players.get(p).personalObjective.printCard();
+                
+                System.out.println();
+                System.out.println("--------------------------------------");
+                System.out.println();
+                
                 players.get(p).library.printLibrary();
                 
+                System.out.println();
+       
                 System.out.println(legend);
+                
+                System.out.println();
+                
                 System.out.println(plank);
 
                 /*
