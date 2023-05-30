@@ -115,7 +115,7 @@ public class Library {
 	 * This method is used to print the library and all its tiles
 	 */
 	public void printLibrary() {
-		System.out.println("\\033[0;32mHere's your library:");
+		System.out.println("\033[0;32mHere's your library:\033[0m");
 		System.out.println("  0  1  2  3  4");
 		System.out.println(" _______________");
 		for(int row=0;row<this.rows;row++) {
