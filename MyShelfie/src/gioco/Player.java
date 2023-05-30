@@ -10,11 +10,11 @@ public class Player {
 	public ScoreTile scoreTile1;
 	public ScoreTile scoreTile2;
 	public int commonObjectivesScore = 0;
-	
 
 	public String getNickname() {
 		return this.nickname;
 	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
