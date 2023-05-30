@@ -55,7 +55,7 @@ public class Game {
         createPlayers(playersNumber);
         int[] objectives = PersonalObjective.drawCard(playersNumber);
         
-        // Chiedi il nickname a ciascun giocatore
+        // It asks the nickname to each player
         for (int i=0; i<playersNumber; i++) {
             System.out.print("Insert nickname for player " + (i+1) + ": ");
             String nickname = scanner.nextLine();
@@ -64,19 +64,19 @@ public class Game {
         }
         Collections.shuffle(players);
         
-        // Estrai le carte obiettivo comune
+        // It extract the common objective cards
         CommonObjective commonObjective1=new CommonObjective();
         CommonObjective commonObjective2=new CommonObjective();
         int n1 = commonObjective1.draw_card();
         int n2 = commonObjective1.draw_card2(n1);
         
-        // Scegli casualmente chi inizia
+        // It picks who starts by random
         
         //Player currentPlayer = players.get(indice_Giocatore_Iniziale);
         
         
         
-        // Riempi la plancia 
+        // It fills the plank 
         Plank plank=new Plank(playersNumber);
         
         boolean gameEnded = false;
@@ -91,7 +91,7 @@ public class Game {
                     plank.fillPlank();
                 }
                 
-                // Ciclo 1 - Turno del giocatore corrente
+                // Cicle 1 - Turn of the current player
                 System.out.println("\n\nIt's " + players.get(p).getNickname() + "'s turn");
                 System.out.println("--------------------------------------");
 
@@ -262,14 +262,14 @@ public class Game {
                 //if(.checkCommonGoals()==true)
                 	//ScoreTile.assegnaPunteggio
 
-                // Controllo fine gioco
+                // End game control
                 if(players.get(p).library.isFull()) {
                     gameEnded = true;
                 }
         	}
         }
 
-        // Calcola punteggio finale e dichiara il vincitore
+        // Final score calculation and declaration of the winner
         int punteggio_Massimo = 0;
         Player winner = null;
 
@@ -285,7 +285,7 @@ public class Game {
 
         System.out.println("The winner is " + winner.getNickname() + "!");
 
-        // Chiedi all'utente se vuole giocare un'altra partita
+        // It asks at the user if he wants to play another game
         System.out.print("Do you want to play another game (yes/no)? ");
         String answer = scanner.nextLine();
         if (answer.equalsIgnoreCase("yes")) {
