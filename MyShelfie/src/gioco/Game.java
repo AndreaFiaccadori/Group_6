@@ -241,9 +241,13 @@ public class Game {
         		}
         		catch(NumberFormatException e) {
         			System.out.println("You put words instead of the numbers for the row and the column of a tile");
+        			p = (p-1)%playersNumber;
+        			continue;
         		}
                 catch(ArrayIndexOutOfBoundsException e) {
                 	System.out.println("You chose too high numbers for the row and/or the column or you forgot to use the space");
+        			p = (p-1)%playersNumber;
+        			continue;
                 }
     			if(!players.get(p).firstCommonObjectiveCompleted && CommonObjective.checkCommonGoals(n1, players.get(p).library)) {
     				players.get(p).commonObjectivesScore += CommonObjective.assignScore(playersNumber, commonObjective1Counter++);
