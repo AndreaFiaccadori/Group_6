@@ -1,13 +1,12 @@
 package gioco;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Library {
-	// remember to change all of the variables into private after the checks
-	// remember to change library into Tile after the check
 	protected Tile[][] library;
-	protected final int rows = 6;
-	protected final int columns = 5;
+	private final int rows = 6;
+	private final int columns = 5;
 	Scanner in = new Scanner(System.in);
 
 	public Library() {
@@ -157,27 +156,28 @@ public class Library {
 		int score = 0;
 		int sum = 0;// it's used to understand from how many points I have to increase the variable
 					// score
-		String tile_type;// used to memorize the type of the tile that I find at the start of the cycle
-		Tile libraryCopy[][] = new Tile[this.rows][this.columns];
+		String tileType;// used to memorize the type of the tile that I find at the start of the cycle
+		Library libraryCopy= new Library();
 		copyLibrary(libraryCopy);
+		libraryCopy.printLibrary();
 		for (int row = 0; row < this.rows; row++) {
 			for (int col = 0; col < this.columns; col++) {
-				if (this.library[row][col] != null) {
-					tile_type = this.library[row][col].getType();
-					this.crossCheck(row, col, tile_type);
+				if (libraryCopy.library[row][col] != null) {
+					tileType = libraryCopy.library[row][col].getType();
+					sum=libraryCopy.crossCheck(libraryCopy,row, col, tileType);
 					if (sum == 3) {
 						score += 2;
 					}
-					if (sum == 3) {
+					if (sum == 4) {
 						score += 3;
 					}
-					if (sum == 3) {
+					if (sum == 5) {
 						score += 5;
 					}
 					if (sum >= 6) {
 						score += 8;
 					}
-					this.library[row][col] = null;
+					libraryCopy.library[row][col] = null;
 					row = 0;
 					col = 0;
 				}
@@ -192,10 +192,10 @@ public class Library {
 	 * 
 	 * @param library the original library of the player
 	 */
-	public void copyLibrary(Tile library[][]) {
+	public void copyLibrary(Library l) {
 		for (int row = 0; row < this.rows; row++) {
 			for (int col = 0; col < this.columns; col++) {
-				library[row][col] = this.library[row][col];
+				l.library[row][col] = this.library[row][col];
 			}
 		}
 
@@ -215,68 +215,63 @@ public class Library {
 	 * @param type the type of the tile found in the score method
 	 * @return it returns the number of the tiles adjacent to the first one
 	 */
-	public int crossCheck(int row, int col, String type) {
+	public int crossCheck(Library l,int row, int col, String type) {
 		int sum = 1;
-		int adjacentTiles[] = new int[60];
-		int checkedTiles[] = new int[60];
-		int nAdjacent = 1, nChecked = 0;
-		adjacentTiles[0] = row;
-		adjacentTiles[1] = col;
-		while (nAdjacent != nChecked) {
-			checkedTiles[nChecked * 2] = row;
-			checkedTiles[nChecked * 2 + 1] = col;
-			nChecked++;
+		ArrayList<Integer> adjacentTiles= new ArrayList<Integer>();
+		ArrayList<Integer> checkedTiles= new ArrayList<Integer>();
+		adjacentTiles.add(row);
+		adjacentTiles.add(col);
+		while (adjacentTiles.size()!=checkedTiles.size()) {
+			checkedTiles.add(row);
+			checkedTiles.add(col);
 			if(row!=0) {
-				if (this.library[row - 1][col] != null) {
-					if (this.library[row - 1][col].getType().equals(type)) {
+				if (l.library[row - 1][col] != null) {
+					if (l.library[row - 1][col].getType().equals(type)) {
 						if (contains(adjacentTiles, row - 1, col) == false) {
-							sum++;
-							adjacentTiles[nAdjacent * 2] = row;
-							adjacentTiles[nAdjacent * 2 + 1] = col;
+							adjacentTiles.add(row-1);
+							adjacentTiles.add(col);
 						}
 					}
 				}
 			}
 			if(row!=(this.rows-1)) {
-				if (this.library[row + 1][col] != null) {
-					if (this.library[row + 1][col].getType().equals(type)) {
+				if (l.library[row + 1][col] != null) {
+					if (l.library[row + 1][col].getType().equals(type)) {
 						if (contains(adjacentTiles, row + 1, col) == false) {
-							sum++;
-							adjacentTiles[nAdjacent * 2] = row;
-							adjacentTiles[nAdjacent * 2 + 1] = col;
+							adjacentTiles.add(row+1);
+							adjacentTiles.add(col);
 						}
 					}
 				}
 			}
 			if(col!=0) {
-				if (this.library[row][col - 1] != null) {
-					if (this.library[row][col - 1].getType().equals(type)) {
+				if (l.library[row][col - 1] != null) {
+					if (l.library[row][col - 1].getType().equals(type)) {
 						if (contains(adjacentTiles, row, col - 1) == false) {
-							sum++;
-							adjacentTiles[nAdjacent * 2] = row;
-							adjacentTiles[nAdjacent * 2 + 1] = col;
+							adjacentTiles.add(row);
+							adjacentTiles.add(col-1);
 						}
 					}
 				}
 			}
 			if(col!=(this.columns-1)) {
-				if (this.library[row][col + 1] != null) {
-					if (this.library[row][col + 1].getType().equals(type)) {
+				if (l.library[row][col + 1] != null) {
+					if (l.library[row][col + 1].getType().equals(type)) {
 						if (contains(adjacentTiles, row, col + 1) == false) {
-							sum++;
-							adjacentTiles[nAdjacent * 2] = row;
-							adjacentTiles[nAdjacent * 2 + 1] = col;
+							adjacentTiles.add(row);
+							adjacentTiles.add(col+1);
 						}
 					}
 				}
 			}
-			int val = whichTile(adjacentTiles, checkedTiles);
-			row = val / 10;
-			col = val - row;
+			row = adjacentTiles.size()-1;
+			col = adjacentTiles.size();
+			System.out.println(row+", "+col);
 		}
-		for (int cont = 0; cont < nAdjacent; cont += 2) {
-			this.library[cont][cont + 1] = null;
+		for (int cont = 0; cont < adjacentTiles.size(); cont += 2) {
+			l.library[cont][cont + 1] = null;
 		}
+		sum=adjacentTiles.size()/2;
 		return sum;
 	}
 
@@ -288,9 +283,9 @@ public class Library {
 	 * @param n1    this number rapresent the rows of the tiles in the array
 	 * @param n2    this number rapresent the columns of the tiles in the array
 	 */
-	public boolean contains(int array[], int n1, int n2) {
-		for (int cont = 0; cont < 60; cont += 2) {
-			if (array[cont] == n1 && array[cont + 1] == n2) {
+	public boolean contains(ArrayList<Integer>l, int n1, int n2) {
+		for (int cont = 0; cont < l.size(); cont += 2) {
+			if (l.get(cont) == n1 && l.get(cont+1) == n2) {
 				return true;
 			}
 		}
@@ -307,12 +302,4 @@ public class Library {
 	 * @param a2 the array checkedTiles
 	 * @return
 	 */
-	public int whichTile(int a1[], int a2[]) {
-		for (int cont = 0; cont < 60; cont += 2) {
-			if (a1[cont] != a2[cont] || a1[cont + 1] != a2[cont + 1]) {
-				return cont * 10 + (cont + 1);
-			}
-		}
-		return 0;
-	}
 }
