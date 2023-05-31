@@ -3,6 +3,11 @@ package gioco;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class represents the library of each player
+ * @author Andrea Fiaccadori
+ *
+ */
 public class Library {
 	protected Tile[][] library;
 	private final int rows = 6;
@@ -23,41 +28,7 @@ public class Library {
 		return this.columns;
 	}
 
-	/**
-	 * The main method to check if the library is being filled right; it checks:
-	 * 1)the correct input of the number of tiles 2)the right column where to put
-	 * the tiles 3)if the library is all full
-	 */
-	public void libraryFillingChecks() {
-		int column, nTiles;
-		boolean tooMany, full;// I use this two variables so i don't have to call the method two times
-		// checking the input of the tiles the player wants to put in his library
-		do {
-			tooMany = false;
-			System.out.println("How many tiles do you want to put in your library?(from 1 to 3)");
-			nTiles = in.nextInt();
-			if (nTiles > 3 || nTiles < 1) {
-				System.out.println("You have chosen an invalid value!!");
-			}
-			if (tooManyTiles(nTiles) == true) {
-				System.out.println("You can't put that many tiles anywhere in your library");
-				tooMany = true;
-			}
 
-		} while (nTiles > 3 || nTiles < 1 || tooMany);
-		// checking if the player can put the tiles in the column he chose
-		do {
-			full = false;
-			System.out.println("In which column do you want to put your tiles?(from 1 to 6)");
-			column = in.nextInt();
-			if (column < 1 || column > 5) {
-				System.out.println("You have chosen a not existing column!!");
-			} else if (isColumnFull(nTiles, --column) == true) {
-				System.out.println("The column you have chosen is already full or cannot contain that many tiles");
-				full = true;
-			}
-		} while (column < 1 || column > 5 || full == true);
-	}
 
 	/**
 	 * This method counts if there are as empty spaces as the tiles the player
@@ -147,8 +118,7 @@ public class Library {
 	/**
 	 * The main method for the score system that add points based on how many tiles
 	 * of the same type are adjacent. Every time i find a tile, the method
-	 * crossChecks triggers and then i add the points to the score based on the
-	 * return
+	 * crossChecks triggers and then i add the points to the score based on the return
 	 * 
 	 * @return it returns the actual score of the player
 	 */
@@ -297,7 +267,8 @@ public class Library {
 	 * 
 	 * @param a1 the ArrayList adjacentTiles
 	 * @param a2 the ArrayList checkedTiles
-	 * @return
+	 * @return the return changes if the two ArrayLists sizes are/aren't the same 
+	 * 		   or they have/haven't a different tile(two adjacent elements)
 	 */
 	public int whichTile(ArrayList<Integer>l1, ArrayList<Integer>l2) {
 		int cont=0;
@@ -312,3 +283,4 @@ public class Library {
 		return 0;
 	}
 }
+
