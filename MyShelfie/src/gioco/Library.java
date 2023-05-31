@@ -224,7 +224,7 @@ public class Library {
 		while (adjacentTiles.size()!=checkedTiles.size()) {
 			checkedTiles.add(row);
 			checkedTiles.add(col);
-			if(row!=0) {
+			/*if(row!=0) {
 				if (l.library[row - 1][col] != null) {
 					if (l.library[row - 1][col].getType().equals(type)) {
 						if (contains(adjacentTiles, row - 1, col) == false) {
@@ -233,7 +233,7 @@ public class Library {
 						}
 					}
 				}
-			}
+			}*/
 			if(row!=5) {
 				if (l.library[row + 1][col] != null) {
 					if (l.library[row + 1][col].getType().equals(type)) {
@@ -267,7 +267,7 @@ public class Library {
 			int val=l.whichTile(adjacentTiles, checkedTiles);
 			if(val!=0) {
 				row = val/10;
-				col = val-row;
+				col = val-row*10;
 			}
 			else {
 				break;
