@@ -234,7 +234,7 @@ public class Library {
 					}
 				}
 			}
-			if(row!=(this.rows-1)) {
+			if(row!=5) {
 				if (l.library[row + 1][col] != null) {
 					if (l.library[row + 1][col].getType().equals(type)) {
 						if (contains(adjacentTiles, row + 1, col) == false) {
@@ -254,7 +254,7 @@ public class Library {
 					}
 				}
 			}
-			if(col!=(this.columns-1)) {
+			if(col!=4) {
 				if (l.library[row][col + 1] != null) {
 					if (l.library[row][col + 1].getType().equals(type)) {
 						if (contains(adjacentTiles, row, col + 1) == false) {
@@ -264,19 +264,26 @@ public class Library {
 					}
 				}
 			}
-			row = adjacentTiles.size()-1;
-			col = adjacentTiles.size();
-			System.out.println(row+", "+col);
+			int val=l.whichTile(adjacentTiles, checkedTiles);
+			if(val!=0) {
+				row = val/10;
+				col = val-row;
+			}
+			else {
+				break;
+			}
 		}
 		for (int cont = 0; cont < adjacentTiles.size(); cont += 2) {
-			l.library[cont][cont + 1] = null;
+			l.library[adjacentTiles.get(cont)][adjacentTiles.get(cont+1)] = null;
 		}
 		sum=adjacentTiles.size()/2;
+		adjacentTiles.clear();
+		checkedTiles.clear();
 		return sum;
 	}
 
 	/**
-	 * I used this method so there aren't duplicates in the 2 array of the method
+	 * I used this method so there aren't duplicates in the 2 ArrayLists of the method
 	 * crossCheck
 	 * 
 	 * @param array the array to check
@@ -293,13 +300,25 @@ public class Library {
 	}
 
 	/**
-	 * This method allows to memorize the row and the column of the tiles in in the
-	 * 2 array of the method crossCheck based on a 2 digit number. The first one is
+	 * This method allows to memorize the row and the column of the tiles in the
+	 * 2 ArrayLists of the method crossCheck based on a 2 digit number. The first one is
 	 * for the row and the second one is for the column. (It only generates the two
 	 * digit number)
 	 * 
-	 * @param a1 the array adjacentTiles
-	 * @param a2 the array checkedTiles
+	 * @param a1 the ArrayList adjacentTiles
+	 * @param a2 the ArrayList checkedTiles
 	 * @return
 	 */
+	public int whichTile(ArrayList<Integer>l1, ArrayList<Integer>l2) {
+		int cont=0;
+		if(l1.size()!=l2.size()) {
+			for (; cont < l2.size(); cont += 2) {
+				if (l1.get(cont)!=l2.get(cont)&&l1.get(cont+1)!=l2.get(cont+1)) {
+					return l1.get(cont+1)*10+l1.get(cont+2);
+				}
+			}
+			return (l1.get(cont)*10)+(l1.get(cont+1));
+		}
+		return 0;
+	}
 }
