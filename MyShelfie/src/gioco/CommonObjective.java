@@ -329,26 +329,19 @@ public class CommonObjective {
 
 		case 3:
 			int quadrato = 0;
-			String tileType1;
-			String tileType2;
-			String tileType3;
-			String tileType4;
-
 			for (row = 5; row > 0; row--) {
-				if (quadrato >= 1) {
-					row--;
-				}
 				for (col = 0; col < 4; col++) {
 					if (libreriaGiocatore.library[row][col] != null && libreriaGiocatore.library[row][col + 1] != null
 							&& libreriaGiocatore.library[row - 1][col] != null
 							&& libreriaGiocatore.library[row - 1][col + 1] != null) {
-						tileType1 = libreriaGiocatore.library[row][col].getType();
-						tileType2 = libreriaGiocatore.library[row][col + 1].getType();
-						tileType3 = libreriaGiocatore.library[row - 1][col].getType();
-						tileType4 = libreriaGiocatore.library[row - 1][col + 1].getType();
-						if (tileType1.equals(tileType2) && tileType1.equals(tileType3) && tileType1.equals(tileType4)) {
+						if (libreriaGiocatore.library[row][col].getType().equals(libreriaGiocatore.library[row][col + 1].getType()) && 
+								libreriaGiocatore.library[row][col].getType().equals(libreriaGiocatore.library[row - 1][col].getType()) && 
+								libreriaGiocatore.library[row][col].getType().equals(libreriaGiocatore.library[row - 1][col + 1].getType())) {
 							quadrato++;
-							col = col + 2;
+							libreriaGiocatore.library[row][col]=null;
+							libreriaGiocatore.library[row][col + 1]=null;
+							libreriaGiocatore.library[row - 1][col]=null;
+							libreriaGiocatore.library[row - 1][col + 1]=null;							
 						}
 					}
 				}
