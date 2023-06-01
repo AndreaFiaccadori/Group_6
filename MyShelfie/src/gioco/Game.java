@@ -60,6 +60,10 @@ public class Game {
 		for (int i = 0; i < playersNumber; i++) {
 			System.out.print("Insert nickname for player " + (i + 1) + ": ");
 			String nickname = scanner.nextLine();
+			while(nickname.length()<1) {
+				System.out.print("\033[0;31mA player's nickname cannot be empty.\033[0m Please insert a nickname for player " + (i+1) + ": ");
+				nickname = scanner.nextLine();
+			}
 			players.get(i).setNickname(nickname);
 			players.get(i).personalObjective = new PersonalObjective(objectives[i]);
 		}
@@ -134,17 +138,18 @@ public class Game {
 				// if the player entered an invalid input he has to restart by the first tile
 				ArrayList<Tile> pickedTiles;
 				int numOfTiles = 0;
+				String line = null;
 				
 				// Input for the tiles to pick
 				while(true) {
 					try {
 						System.out.print(players.get(p).getNickname() + ", write the row and the column of the tile you want to pick, separated by a space, and press enter: ");
-						String line = scanner.nextLine();
+						line = scanner.nextLine();
 						String[] coords = line.trim().split(" ");
 						int row1 = Integer.parseInt(coords[0]);
 						int col1 = Integer.parseInt(coords[1]);
 						while (!plank.isChoiceValid(row1, col1)) {
-							System.out.print("The given coordinates are invalid. Please write the row, followed by a space, and then the column of the tile you want to pick: ");
+							System.out.print("\033[0;31mThe given coordinates are invalid.\033[0m Please write the row, followed by a space, and then the column of the tile you want to pick: ");
 							line = scanner.nextLine();
 							coords = line.trim().split(" ");
 							row1 = Integer.parseInt(coords[0]);
@@ -155,41 +160,43 @@ public class Game {
 						numOfTiles = 1;
 
 						System.out.print("Do you want to pick a second tile (y/n)? ");
-						char choice = scanner.nextLine().charAt(0);
-						while (choice != 'y' && choice != 'n') {
-							System.out.print("I did not understand. Do you want to pick a second tile (y/n)? ");
-							choice = scanner.nextLine().charAt(0);
+						String choice = scanner.nextLine();
+						while(choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
+							System.out.print("\033[0;31mI did not understand.\033[0m Do you want to pick a second tile (y/n)? ");
+							choice = scanner.nextLine();
 						}
-						if (choice == 'y') {
+						
+						if (choice.equalsIgnoreCase("Y")) {
 							numOfTiles = 2;
-							System.out.print("Write the row and the column of the second tile you want to pick, separated by a space, and press enter: ");
+							System.out.print("Write the row and the column of the second tile you want to pick, separated by a space, and press enter (or write \"\033[0;96mundo\033[0m\" to cancel the selection): ");
 							line = scanner.nextLine();
 							coords = line.trim().split(" ");
 							int row2 = Integer.parseInt(coords[0]);
 							int col2 = Integer.parseInt(coords[1]);
 							while (!plank.isChoiceValid(row1, col1, row2, col2)) {
-								System.out.print("The given coordinates are invalid. Please write the row, followed by a space, and then the column of the tile you want to pick: ");
+								System.out.print("\033[0;31mThe given coordinates are invalid.\033[0m Please write the row, followed by a space, and then the column of the tile you want to pick: ");
 								line = scanner.nextLine();
 								coords = line.trim().split(" ");
 								row2 = Integer.parseInt(coords[0]);
 								col2 = Integer.parseInt(coords[1]);
 							}
-
-							System.out.print("Do you want to pick a third tile (y/n)? ");
-							choice = scanner.nextLine().charAt(0);
-							while (choice != 'y' && choice != 'n') {
-								System.out.print("I did not understand. Do you want to pick a third tile (y/n)? ");
-								choice = scanner.nextLine().charAt(0);
+							
+							System.out.print("Do you want to pick a second tile (y/n)? ");
+							choice = scanner.nextLine();
+							while(choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
+								System.out.print("\033[0;31mI did not understand.\033[0m Do you want to pick a second tile (y/n)? ");
+								choice = scanner.nextLine();
 							}
-							if (choice == 'y') {
+							
+							if (choice.equalsIgnoreCase("Y")) {
 								numOfTiles = 3;
-								System.out.print("Write the row and the column of the third tile you want to pick, separated by a space, and press enter: ");
+								System.out.print("Write the row and the column of the third tile you want to pick, separated by a space, and press enter (or write \"undo\" to cancel the selection): ");
 								line = scanner.nextLine();
 								coords = line.trim().split(" ");
 								int row3 = Integer.parseInt(coords[0]);
 								int col3 = Integer.parseInt(coords[1]);
 								while (!plank.isChoiceValid(row1, col1, row1, col2, row3, col3)) {
-									System.out.print("The given coordinates are invalid. Please write the row, followed by a space, and then the column of the tile you want to pick: ");
+									System.out.print("\033[0;31mThe given coordinates are invalid.\033[0m\nPlease write the row, followed by a space, and then the column of the tile you want to pick: ");
 									line = scanner.nextLine();
 									coords = line.trim().split(" ");
 									row3 = Integer.parseInt(coords[0]);
@@ -209,10 +216,14 @@ public class Game {
 							break;
 						}
 					} catch (NumberFormatException e) {
-						System.out.print("You put words instead of the numbers for the row and the column of a tile. ");
+						if(line.equals("undo")) {
+							System.out.println("\033[0;96mLet's undo your tile selection.\033[0m");
+							continue;
+						}
+						System.out.println("\033[0;31mYou put words instead of the numbers for the row and the column of a tile. Let's undo your tile selection.\033[0m");
 						continue;
 					} catch (ArrayIndexOutOfBoundsException e) {
-						System.out.print("The numbers are not valid. ");
+						System.out.println("\033[0;31mThe numbers are not valid. Let's undo your tile selection.\033[0m");
 						continue;
 					}
 				}
@@ -223,25 +234,28 @@ public class Game {
 					try {
 						players.get(p).library.printLibrary();
 						System.out.print("In which column do you want to put the tiles (0-4)? ");
-						column = scanner.nextInt();
+						line = scanner.nextLine();
+						column = Integer.parseInt(line);
 						boolean full = false;
-						while (column < 0 || column > 4 || full == true) {
+						while (column < 0 || column > 4 || full == true || line.length()<1) {
 							full = false;
-							System.out.print("You have chosen an invalid column. Please choose a valid column: ");
-							column = scanner.nextInt();
-							if (column < 1 || column > 4) {
-								System.out.println("You have chosen a not existing column!!");
+							System.out.print("\033[0;31mYou have chosen an invalid column.\033[0m Please choose a valid column: ");
+							line = scanner.nextLine();
+							column = Integer.parseInt(line);
+							if (column < 0 || column > 4) {
+								System.out.println("\033[0;31mYou have chosen a not existing column!\033[0m");
+								continue;
 							} else if (players.get(p).library.isColumnFull(numOfTiles, --column) == true) {
-								System.out.println("The column you have chosen is already full or cannot contain that many tiles.");
+								System.out.println("\033[0;31mThe column you have chosen is already full or cannot contain that many tiles.\033[0m");
 								full = true;
 							}
 						}
 						break;
 					} catch (NumberFormatException e) {
-						System.out.print("You put words instead of the numbers for the column of the library's column. ");
+						System.out.println("\033[0;31mYou put words instead of the numbers for the column of the library's column.\033[0m");
 						continue;
 					} catch (ArrayIndexOutOfBoundsException e) {
-						System.out.print("The number is not valid. ");
+						System.out.println("\033[0;31mThe number is not valid.\033[0m");
 						continue;
 					}
 				}
@@ -258,7 +272,7 @@ public class Game {
 							System.out.print("Which tile do you want to insert? ");
 							int tileToInsert = scanner.nextInt();
 							while (tileToInsert < 0 || tileToInsert > pickedTiles.size()) {
-								System.out.print("You have chosen an invalid tile. Please pick a valid one: ");
+								System.out.print("\033[0;96mYou have chosen an invalid tile.\033[0m Please pick a valid one: ");
 								tileToInsert = scanner.nextInt();
 							}
 							players.get(p).library.libraryFilling(pickedTiles.get(tileToInsert), column);
@@ -269,10 +283,10 @@ public class Game {
 						scanner.nextLine();
 						break;
 					} catch (NumberFormatException e) {
-						System.out.print("You put words instead of the number of tile you want to insert. ");
+						System.out.println("\033[0;96mYou put words instead of the number of tile you want to insert.\033[0m");
 						continue;
-					} catch (ArrayIndexOutOfBoundsException e) {
-						System.out.print("You chose an invalid number of tile to insert. ");
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("\033[0;96mYou chose an invalid number of tile to insert.\033[0m");
 						continue;
 					}
 				}
