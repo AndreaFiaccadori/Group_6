@@ -25,37 +25,28 @@ public class Tile {
 	}
 
 	/**
-	 * Returns the numeric type of the tile (0-5).
-	 * 
-	 * @return Numeric type of the tile.
+	 * @return Numeric type of the tile (0-5)
 	 */
 	public int getTypeId() {
 		return type;
 	}
 
 	/**
-	 * Returns the type of the tile.
-	 * 
-	 * @return Type of the tile.
+	 * @return Type of the tile
 	 */
 	public String getType() {
 		return TYPES[type];
 	}
 
 	/**
-	 * Returns the color of the tile.
-	 * 
-	 * @return Color of the tile.
+	 * @return Color of the tile
 	 */
 	public String getColor() {
 		return COLORS[type];
 	}
 
 	/**
-	 * Returns the first character of the type of tile, colored according to its
-	 * type.
-	 * 
-	 * @return The first character of the type of tile with its color.
+	 * @return The first character of the type of tile, colored according to its type
 	 */
 	public String getFirstTypeChar() {
 		return COLOR_CODES[type] + TYPES[type].charAt(0) + "\033[0m";
