@@ -1,17 +1,18 @@
-						                                MyShelfie
+<h1 align="center">MyShelfie</h1>
 
 This project is inpired by the table game "MyShelfie".
 In this game your main goal is filling your personal library trying to complete as many objectives as possible choosing carefully the right tiles at the right moment.
 Not so many points are given to the one that finish his library first so this game is based
 more on strategy than speed.
-──────────────────────────────────────
+
+
 1. Introduction
  -For this project we decided to don't develop the graphic interface but instead we   perfected the output by console by adding colors, rows and columns numbers,   boards 
   and a legend to make it elegant and easier to understand to the players.
  -There aren't some classes like Chair, ScoreTile and Bag because we preferred instead to
   implement this functions in the remaining classes.
 
-──────────────────────────────────────
+
 2. Start of the game
   2.1 Initial inputs
    -The game starts by asking how many players want to play (2-4)
@@ -21,7 +22,7 @@ more on strategy than speed.
    -Common objective cards (always 2) are extracted
    -The plank is filled based on the number of players
 
-──────────────────────────────────────
+
 3. Turn
   3.1 Picking the object tiles
    -It checks if the plank needs to be filled
@@ -53,7 +54,7 @@ more on strategy than speed.
   3.3 Endgame 
    -At the end of the turn the game checks if the library is completed, if that happens the      palyer is being awarded with a bonus point and then the other      	players after the current player needs to finish their turn.
 
-──────────────────────────────────────
+
 4. Score calculation
  After the last turn is being finished the game must determine the score for each player
  based on how many common objective has completed, how many tiles are positioned following
