@@ -97,7 +97,7 @@ public class PersonalObjective {
 			card[2][0] = "white";
 			card[3][3] = "green";
 			card[4][1] = "blue";
-			card[3][3] = "pink";
+			card[5][3] = "pink";
 			break;
 
 		case 9:
