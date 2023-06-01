@@ -413,9 +413,9 @@ public class CommonObjective {
 			int contatoreFrame = 0;
 			int contatoreTrophy = 0;
 			int contatorePlant = 0;
-			if (libreriaGiocatore.library[row][col] != null) {
-				for (row = 0; row < 6; row++) {
-					for (col = 0; col < 5; col++) {
+			for (row = 0; row < 6; row++) {
+				for (col = 0; col < 5; col++) {
+					if (libreriaGiocatore.library[row][col] != null) {
 						tileType = libreriaGiocatore.library[row][col].getType();
 						if (tileType.equals("cat")) {
 							contatoreCat++;
