@@ -188,7 +188,7 @@ public class Game {
 								col2 = Integer.parseInt(coords[1]);
 							}
 
-							System.out.print("Do you want to pick a second tile (y/n)? ");
+							System.out.print("Do you want to pick a third tile (y/n)? ");
 							choice = scanner.nextLine();
 							while (choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
 								System.out.print(
@@ -279,7 +279,7 @@ public class Game {
 				while (true) {
 					try {
 						while (pickedTiles.size() > 1) {
-							System.out.print("Here are your tiles:   ");
+							System.out.print("Here are your tiles:     ");
 							for (int i = 0; i < pickedTiles.size(); i++) {
 								System.out.print(i + ": " + pickedTiles.get(i).getFirstTypeChar() + "  ");
 							}
