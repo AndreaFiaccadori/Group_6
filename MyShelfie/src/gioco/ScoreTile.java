@@ -10,9 +10,8 @@ public class ScoreTile {
 	private static int scoreIndex1;
 	private static int scoreIndex2;
 
-	public ScoreTile(CommonObjective commonObjective/* , Player assignedPlayer */) {
-		// this.assigendPlayer = assignedPlayer;
-		if (commonObjective.id == 1) {
+	public ScoreTile(CommonObjective commonObjective) {
+		if (commonObjective.getId() == 1) {
 			this.value = possibleValues1.get(scoreIndex1);
 			scoreIndex1--;
 
@@ -25,10 +24,6 @@ public class ScoreTile {
 	public String getValue() {
 		return value;
 	}
-
-	/*
-	 * public Player getAssigendPlayer() { return assigendPlayer; }
-	 */
 
 	public static void createScoreTiles(int nPlayers) {
 		switch (nPlayers) {

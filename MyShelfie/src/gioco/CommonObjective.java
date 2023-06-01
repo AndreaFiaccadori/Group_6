@@ -13,7 +13,8 @@ import java.util.Set;
  */
 public class CommonObjective {
 	private static int COUNT = 1;
-	public final int id;
+	private final int id;
+	private Random rand = new Random();
 
 	public CommonObjective() {
 		this.id = COUNT++;
@@ -24,8 +25,7 @@ public class CommonObjective {
 	 * 
 	 * @return the number of the common card
 	 */
-	public int draw_card() {
-		Random rand = new Random();
+	public int drawCard() {
 		int upperbound = 12;
 		int random = rand.nextInt(upperbound);
 		return random;
@@ -37,9 +37,8 @@ public class CommonObjective {
 	 * @param the number of the first common card
 	 * @return the number of the second common card
 	 */
-	public int draw_card2(int random1) { // pesca obiettivo comune 2
+	public int drawCard2(int random1) { // pesca obiettivo comune 2
 		int random2;
-		Random rand = new Random();
 		int upperbound = 12;
 		do {
 			random2 = rand.nextInt(upperbound);
@@ -52,7 +51,7 @@ public class CommonObjective {
 	 * 
 	 * @param the number of the common card you want to show
 	 */
-	public void show_objective(int a) {
+	public void showObjective(int a) {
 		System.out.println("\033[0;32mCommon objective " + id + ":\033[0m");
 
 		switch (a) {
@@ -334,14 +333,17 @@ public class CommonObjective {
 					if (libreriaGiocatore.library[row][col] != null && libreriaGiocatore.library[row][col + 1] != null
 							&& libreriaGiocatore.library[row - 1][col] != null
 							&& libreriaGiocatore.library[row - 1][col + 1] != null) {
-						if (libreriaGiocatore.library[row][col].getType().equals(libreriaGiocatore.library[row][col + 1].getType()) && 
-								libreriaGiocatore.library[row][col].getType().equals(libreriaGiocatore.library[row - 1][col].getType()) && 
-								libreriaGiocatore.library[row][col].getType().equals(libreriaGiocatore.library[row - 1][col + 1].getType())) {
+						if (libreriaGiocatore.library[row][col].getType()
+								.equals(libreriaGiocatore.library[row][col + 1].getType())
+								&& libreriaGiocatore.library[row][col].getType()
+										.equals(libreriaGiocatore.library[row - 1][col].getType())
+								&& libreriaGiocatore.library[row][col].getType()
+										.equals(libreriaGiocatore.library[row - 1][col + 1].getType())) {
 							quadrato++;
-							libreriaGiocatore.library[row][col]=null;
-							libreriaGiocatore.library[row][col + 1]=null;
-							libreriaGiocatore.library[row - 1][col]=null;
-							libreriaGiocatore.library[row - 1][col + 1]=null;							
+							libreriaGiocatore.library[row][col] = null;
+							libreriaGiocatore.library[row][col + 1] = null;
+							libreriaGiocatore.library[row - 1][col] = null;
+							libreriaGiocatore.library[row - 1][col + 1] = null;
 						}
 					}
 				}
@@ -666,6 +668,10 @@ public class CommonObjective {
 		}
 		return 0;
 
+	}
+
+	public int getId() {
+		return this.id;
 	}
 
 }

@@ -14,10 +14,10 @@ public class PersonalObjective {
 	private final String reset = "\033[0m";
 
 	/**
-	 * @param numCard numero della carta che si vuole creare
+	 * @param cardNumber numero della carta che si vuole creare
 	 */
-	public PersonalObjective(int numCard) {
-		switch (numCard) {
+	public PersonalObjective(int cardNumber) {
+		switch (cardNumber) {
 
 		case 0:
 			card[0][4] = "blue";

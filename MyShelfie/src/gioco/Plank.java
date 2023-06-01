@@ -1,22 +1,39 @@
 package gioco;
 
+/**
+ * 
+ * The plank has tiles that can be used by the players.
+ * Different cells are filled with tiles based on the number of players.
+ * 
+ * @author Davide Falconi
+ *
+ */
+
 public class Plank {
 	private static final int rows = 9;
 	private static final int cols = 9;
 	private int numberOfPlayers;
-	
+
 	private Tile plank[][] = new Tile[rows][cols];
-	
-	
+
 	/**
 	 *
-	 * 0 1 2 3 4 5 6 7 8
-	 * 
-	 * 0 3 4 1 + + 4 2 3 + + + 3 3 4 + + + + + + 3 4 4 + + + + + + + 4 5 3 + + + + +
-	 * + 4 6 3 + + + 3 7 4 + + 8 4 3
+	 *     0 1 2 3 4 5 6 7 8
+	 *    
+	 *  0        3 4
+	 *  1        + + 4
+	 *  2      3 + + + 3
+	 *  3    4 + + + + + + 3
+	 *  4  4 + + + + + + + 4
+	 *  5  3 + + + + + + 4
+	 *  6      3 + + + 3
+	 *  7        4 + +
+	 *  8          4 3
 	 *
 	 *
-	 * +: always fill 3: only fill with 3 or 4 players 4: only fill with 4 players
+	 * +: always fill
+	 * 3: only fill with 3 or 4 players
+	 * 4: only fill with 4 players
 	 * 
 	 */
 	private static final int[][] TILES_POSITIONS = {
@@ -41,7 +58,9 @@ public class Plank {
 		fillPlank();
 	}
 
-	// Randomly fills empty cells on the plank, according to the number of players
+	/**
+	 * Randomly fills empty cells on the plank, according to the number of players
+	 */
 	public void fillPlank() {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
@@ -54,7 +73,7 @@ public class Plank {
 
 	// Returns a string with the plank
 	// Print the returned string to print the plank
-	
+
 	/**
 	 * @return A String to print that contains the game plank
 	 */
@@ -79,7 +98,7 @@ public class Plank {
 	}
 
 	// Checks if the cell given is a valid choice
-	
+
 	/**
 	 * Checks if the cell at the given coordinates is a valid choice
 	 * 
@@ -133,11 +152,12 @@ public class Plank {
 		if (!hasFreeAdjacent(row1, col1) || !hasFreeAdjacent(row2, col2) || !hasFreeAdjacent(row3, col3)) {
 			return false;
 		}
-		if (row1 == row2 && row2 == row3 && col1 != col3 && (Math.abs(col1 - col2) == 1 && Math.abs(col2 - col3) == 1)) {
+		if (row1 == row2 && row2 == row3 && col1 != col3
+				&& (Math.abs(col1 - col2) == 1 && Math.abs(col2 - col3) == 1)) {
 			return true;
 		}
-		if (col1 == col2 && col2 == col3 && row1 != row3 && (Math.abs(row1 - row2) == 1 && Math.abs(row2 - row3) == 1)) {
-			System.out.println("AAA");
+		if (col1 == col2 && col2 == col3 && row1 != row3
+				&& (Math.abs(row1 - row2) == 1 && Math.abs(row2 - row3) == 1)) {
 			return true;
 		}
 		return false;
@@ -160,13 +180,12 @@ public class Plank {
 		return false;
 	}
 
-	// Pick a tile, returns it and sets that tile's position to null on the plank
-	
 	/**
+	 * Pick a tile, returns it and sets that tile's position to null on the plank
 	 * 
-	 * @param row
-	 * @param col
-	 * @return
+	 * @param row Row of the tile to pick
+	 * @param col Col of the tile to pick
+	 * @return The Tile
 	 */
 	public Tile takeTile(int row, int col) {
 		if (!isChoiceValid(row, col)) {
@@ -178,7 +197,9 @@ public class Plank {
 		}
 	}
 
-	// Returns true if the plank needs to be refilled, returns false otherwise
+	/**
+	 * @return true if the plank needs to be refilled, returns false otherwise
+	 */
 	public boolean isToFill() {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
@@ -202,6 +223,9 @@ public class Plank {
 		return true;
 	}
 
+	/**
+	 * @return number of players
+	 */
 	public int getNumberOfPlayers() {
 		return this.numberOfPlayers;
 	}
