@@ -195,7 +195,7 @@ public class Game {
 								coords = line.trim().split(" ");
 								int row3 = Integer.parseInt(coords[0]);
 								int col3 = Integer.parseInt(coords[1]);
-								while (!plank.isChoiceValid(row1, col1, row1, col2, row3, col3)) {
+								while (!plank.isChoiceValid(row1, col1, row2, col2, row3, col3)) {
 									System.out.print("\033[0;31mThe given coordinates are invalid.\033[0m\nPlease write the row, followed by a space, and then the column of the tile you want to pick: ");
 									line = scanner.nextLine();
 									coords = line.trim().split(" ");
