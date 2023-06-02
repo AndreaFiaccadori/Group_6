@@ -296,6 +296,7 @@ public class Game {
 						}
 						playersList.get(p).library.libraryFilling(pickedTiles.get(0), column);
 						pickedTiles.remove(0);
+						scanner.nextLine();
 						break;
 					} catch (NumberFormatException e) {
 						System.out.println(
@@ -313,7 +314,8 @@ public class Game {
 					playersList.get(p).commonObjectivesScore += CommonObjective.assignScore(playersNumber,
 							commonObjective1Counter++);
 					playersList.get(p).firstCommonObjectiveCompleted = true;
-					System.out.println(playersList.get(p).getNickname() + " has completed the first common objective!");
+					System.out.println(playersList.get(p).getNickname() + " has completed the first common objective! Press enter to continue...");
+					scanner.nextLine();
 				}
 				if (!playersList.get(p).secondCommonObjectiveCompleted
 						&& CommonObjective.checkCommonGoals(n2, playersList.get(p).library)) {
@@ -321,7 +323,8 @@ public class Game {
 							commonObjective2Counter++);
 					playersList.get(p).secondCommonObjectiveCompleted = true;
 					System.out
-							.println(playersList.get(p).getNickname() + " has completed the second common objective!");
+							.println(playersList.get(p).getNickname() + " has completed the second common objective! Press enter to continue...");
+					scanner.nextLine();
 				}
 
 				// End game control
