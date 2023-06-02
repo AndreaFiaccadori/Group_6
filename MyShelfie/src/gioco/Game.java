@@ -249,14 +249,14 @@ public class Game {
 						line = scanner.nextLine();
 						column = Integer.parseInt(line);
 						boolean full = false;
-						while (column < 0 || column > 4 || full == true || line.length() < 1) {
+						while (column < 0 || column > 4 || full == true || line.isEmpty()) {
 							full = false;
 							System.out.print(
 									"\033[0;31mYou have chosen an invalid column.\033[0m Please choose a valid column: ");
 							line = scanner.nextLine();
 							column = Integer.parseInt(line);
 							if (column < 0 || column > 4) {
-								System.out.println("\033[0;31mYou have chosen a not existing column!\033[0m");
+								System.out.println("\033[0;31mYou have chosen a no-existent column!\033[0m");
 								continue;
 							} else if (playersList.get(p).library.isColumnFull(numOfTiles, --column) == true) {
 								System.out.println(
@@ -296,7 +296,6 @@ public class Game {
 						}
 						playersList.get(p).library.libraryFilling(pickedTiles.get(0), column);
 						pickedTiles.remove(0);
-						scanner.nextLine();
 						break;
 					} catch (NumberFormatException e) {
 						System.out.println(
