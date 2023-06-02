@@ -519,11 +519,15 @@ public class CommonObjective {
 			for (Tile[] rowContr : library2.library) {
 				Set<String> rows = new HashSet<>();
 				for (Tile tileContr : rowContr) {
+					if(tileContr == null) {
+						rows.clear();
+						break;
+					}
 					if (tileContr != null) {
 						rows.add(String.valueOf(tileContr.getColor()));
 					}
 				}
-				if (rows.size() <= 3) {
+				if (rows.size() <= 3 && rows.size() > 0) {
 					counter++;
 				}
 			}

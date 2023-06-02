@@ -285,7 +285,9 @@ public class Game {
 							}
 							System.out.println();
 							System.out.print("Which tile do you want to insert? ");
-							int tileToInsert = scanner.nextInt();
+							line = scanner.nextLine();
+							int tileToInsert = Integer.parseInt(line);
+							//int tileToInsert = scanner.nextInt();
 							while (tileToInsert < 0 || tileToInsert > pickedTiles.size()) {
 								System.out.print(
 										"\033[0;96mYou have chosen an invalid tile.\033[0m Please pick a valid one: ");
@@ -296,7 +298,6 @@ public class Game {
 						}
 						playersList.get(p).library.libraryFilling(pickedTiles.get(0), column);
 						pickedTiles.remove(0);
-						scanner.nextLine();
 						break;
 					} catch (NumberFormatException e) {
 						System.out.println(
@@ -329,7 +330,10 @@ public class Game {
 
 				// End game control
 				if (playersList.get(p).library.isFull()) {
+					playersList.get(p).commonObjectivesScore += 1;
 					gameEnded = true;
+					System.out.println(playersList.get(p).getNickname() + " has completed their library, and they got a bonus point! This is the last round. Press enter to continue...");
+					scanner.nextLine();
 				}
 			}
 		}
