@@ -194,7 +194,7 @@ public class PersonalObjective {
 				cardColor = personalCard.getColor(contRow, contColumn);
 				if (cardColor.equals("null")) {
 					continue;
-				} else {
+				} else if(personalLibrary.library[contRow][contColumn]!=null){
 					libraryColor = String.valueOf(personalLibrary.library[contRow][contColumn].getColor());
 					if (cardColor.equals(libraryColor)) {
 						score++;
