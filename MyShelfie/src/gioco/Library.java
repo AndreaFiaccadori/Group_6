@@ -46,16 +46,17 @@ public class Library {
 	 */
 	public boolean tooManyTiles(int tiles) {
 		int nullCounter = 0;
-		for (int row = 0; row < this.rows; row++) {
-			for (int col = 0; col < this.columns; col++) {
+		for (int col = 0; col < this.columns; col++) {
+			for (int row = 0; row < this.rows; row++) {
 				if (this.library[row][col] == null) {
 					nullCounter++;
+				} else {
+					break;
 				}
 			}
-			if (nullCounter > tiles) {
+			if (nullCounter >= tiles) {
 				return false;
 			}
-
 			nullCounter = 0;
 		}
 		return true;

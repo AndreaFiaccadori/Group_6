@@ -162,13 +162,18 @@ public class Game {
 
 						pickedTiles = new ArrayList<Tile>();
 						numOfTiles = 1;
-
-						System.out.print("Do you want to pick a second tile (y/n)? ");
-						String choice = scanner.nextLine();
-						while (choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
-							System.out.print(
-									"\033[0;31mI did not understand.\033[0m Do you want to pick a second tile (y/n)? ");
+						
+						String choice;
+						if(playersList.get(p).library.tooManyTiles(2)) {
+							choice = "N";
+						} else {
+							System.out.print("Do you want to pick a second tile (y/n)? ");
 							choice = scanner.nextLine();
+							while (choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
+								System.out.print(
+										"\033[0;31mI did not understand.\033[0m Do you want to pick a second tile (y/n)? ");
+								choice = scanner.nextLine();
+							}
 						}
 
 						if (choice.equalsIgnoreCase("Y")) {
@@ -187,13 +192,17 @@ public class Game {
 								row2 = Integer.parseInt(coords[0]);
 								col2 = Integer.parseInt(coords[1]);
 							}
-
-							System.out.print("Do you want to pick a third tile (y/n)? ");
-							choice = scanner.nextLine();
-							while (choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
-								System.out.print(
-										"\033[0;31mI did not understand.\033[0m Do you want to pick a second tile (y/n)? ");
+							
+							if(playersList.get(p).library.tooManyTiles(3)) {
+								choice = "N";
+							} else {
+								System.out.print("Do you want to pick a third tile (y/n)? ");
 								choice = scanner.nextLine();
+								while (choice.length() < 1 || (choice.charAt(0) != 'y' && choice.charAt(0) != 'n')) {
+									System.out.print(
+											"\033[0;31mI did not understand.\033[0m Do you want to pick a second tile (y/n)? ");
+									choice = scanner.nextLine();
+								}
 							}
 
 							if (choice.equalsIgnoreCase("Y")) {
@@ -248,21 +257,18 @@ public class Game {
 						System.out.print("In which column do you want to put the tiles (0-4)? ");
 						line = scanner.nextLine();
 						column = Integer.parseInt(line);
-						boolean full = false;
-						while (column < 0 || column > 4 || full == true || line.isEmpty()) {
-							full = false;
+						while (column < 0 || column > 4) {
 							System.out.print(
 									"\033[0;31mYou have chosen an invalid column.\033[0m Please choose a valid column: ");
 							line = scanner.nextLine();
 							column = Integer.parseInt(line);
-							if (column < 0 || column > 4) {
-								System.out.println("\033[0;31mYou have chosen a no-existent column!\033[0m");
-								continue;
-							} else if (playersList.get(p).library.isColumnFull(numOfTiles, --column) == true) {
-								System.out.println(
-										"\033[0;31mThe column you have chosen is already full or cannot contain that many tiles.\033[0m");
-								full = true;
-							}
+							
+							
+						}
+						if (playersList.get(p).library.isColumnFull(numOfTiles, column) == true) {
+							System.out.println(
+									"\033[0;31mThe column you have chosen is already full or cannot contain that many tiles.\033[0m");
+							continue;
 						}
 						break;
 					} catch (NumberFormatException e) {
