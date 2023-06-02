@@ -10,6 +10,7 @@ public class Player {
 	public ScoreTile scoreTile1;
 	public ScoreTile scoreTile2;
 	public int commonObjectivesScore = 0;
+	public int finalScore = 0;
 
 	public String getNickname() {
 		return this.nickname;

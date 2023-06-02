@@ -346,21 +346,32 @@ public class Game {
 
 		// Final score calculation and declaration of the winner
 		int maxScore = 0;
-		Player winner = null;
-
 		for (Player player : playersList) {
-			int score = player.library.score()
+			player.finalScore = player.library.score()
 					+ player.personalObjective.playerScore(player.library, player.personalObjective)
 					+ player.commonObjectivesScore;
-			System.out.println(player.getNickname() + " obtained a score of " + score + " points.");
-
-			if (score > maxScore) {
-				maxScore = score;
-				winner = player;
+			System.out.println(player.getNickname() + " obtained a score of " + player.finalScore + " points.");
+			
+			if (player.finalScore > maxScore) {
+				maxScore = player.finalScore;
+			}
+		}
+		ArrayList<Player> winners = new ArrayList<Player>();
+		for(Player player : playersList) {
+			if(player.finalScore == maxScore) {
+				winners.add(player);
 			}
 		}
 
-		System.out.println("The winner is " + winner.getNickname() + "!");
+		if(winners.size() == 1) {
+			System.out.println("The winner is " + winners.get(0).getNickname() + "!");
+		} else {
+			System.out.println("We have multiple winners with " + maxScore + "points! They are:");
+			for(Player winner : winners) {
+				System.out.println(winner.getNickname() + "!");
+			}
+		}
+		System.out.println();
 
 		// It asks at the user if he wants to play another game
 		System.out.print("Do you want to play another game (yes/no)? ");
